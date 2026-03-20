@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/rezet.css">
+    <link rel="stylesheet" href="./css/heder.css">
+    <link rel="stylesheet" href="./css/ticket.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="invoice-box" id="invoice">
+    <div class="header">
+        <h2>Step Railway</h2>
+        <img src="./imgs/stepLogo.jpg" alt="Logo">
+    </div>
+
+    <div class="ticket-meta">
+        <p>ბილეთის ნომერი: <span id="ticket-id"></span></p>
+        <p>გაცემის თარიღი: <span id="issue-date"></span></p>
+    </div>
+
+    <div class="travel-details">
+        <div>გამგზავრება: <br><strong id="dep-info"></strong></div>
+        <div>ჩასვლა: <br><strong id="arr-info"></strong></div>
+        <div>თარიღი: <br><strong id="travel-date"></strong></div>
+    </div>
+
+    <div class="contact-section">
+    <h3>საკონტაქტო ინფორმაცია:</h3>
+    <div class="contact-details">
+        <div class="contact-box"><strong>იმეილი:</strong> <span id="ticket-email"></span></div>
+        <div class="contact-box"><strong>ტელ. ნომერი:</strong> <span id="ticket-phone"></span></div>
+    </div>
+</div>
+
+    <table class="passengers-table">
+        <thead>
+            <tr>
+                <th>სახელი</th>
+                <th>გვარი</th>
+                <th>პირადი ნომერი</th>
+                <th>ადგილი</th>
+                <th>ვაგონი</th>
+            </tr>
+        </thead>
+        <tbody id="passenger-rows"></tbody>
+    </table>
+
+    <div class="payment-info">
+        <div class="card-details">
+            <p id="ticket-holder-name"></p>
+            <p>Credit Card - <span id="ticket-card-mask"></span></p>
+        </div>
+        <div class="total-sum">
+            სულ გადახდილი: <strong id="final-amount"></strong>
+        </div>
+    </div>
+</div>
+    </main>
+
+
+
+<footer class="footerSR">
+        <div class="footerRailway">
+            <p class="footerText">©2023 <span class="stepRail">Step Railway. </span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/ticket.js"></script>
+</body>
+</html>

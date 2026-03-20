@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/rezet.css">
+    <link rel="stylesheet" href="./css/heder.css">
+    <link rel="stylesheet" href="./css/registration.css">
+</head>
+
+<body>
+    <header></header>
+
+    <main>
+        <div class="registrationTitle">
+            <p class="regText">მგზავრების მონაცემები</p>
+        </div>
+<div id="user-info"></div>
+        <div class="registration-wrapper">
+
+            <div class="forms-container">
+                <p class="enterYourDet">შეიყვანეთ თქვენი მონაცემები</p>
+                <div class="selectedTreinCard" id="selectedTrainInfo">
+                </div>
+
+                <div id="errorMessage" class="Warn"></div>
+
+                <div class="sectionBlock">
+                    <h3 class="info">საკონტაქტო ინფორმაცია</h3>
+                    <div class="inputGroup">
+                        <input class="inputMP" type="email" id="email" placeholder="example@mail.com" required>
+                        <input class="inputMP" type="tel" id="phone" placeholder="+995555123456" required>
+                    </div>
+                </div>
+                <div class="passengerInfo">
+                    <h4 class="info">მგზავრების ინფორმაცია</h4>
+
+                </div>
+
+                <div id="passengersList"></div>
+
+                <div class="BaggageInformation">
+                    <div class="bags">
+                        <img class="imgBags" src="./imgs/pbag1.svg" alt="pbag1">
+                        <div class="info">
+                            <p class="text1">Personal Item</p>
+                            <p class="text2">Purse, small backpack, briefcase</p>
+                            <div class="checkbox">
+                                <input class="check" type="checkbox" id="includedPersonal" checked>
+                                <label class="text3" for="includedPersonal">Included</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bags">
+                        <img class="imgBags" src="./imgs/pbag2.svg" alt="pbag2">
+                        <div class="info">
+                            <p class="text1">Carry-on bag</p>
+                            <p class="text2">Fits in overhead bin or under the seat</p>
+                            <div class="checkbox">
+                                <input class="check" type="checkbox" id="includedCarryOn" checked>
+                                <label class="text3" for="includedCarryOn">Included</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bags">
+                        <img class="imgBags" src="./imgs/pbag3.svg" alt="pbag3">
+                        <div class="info">
+                            <p class="text1">Checked Bags</p>
+                            <p class="text2">Larges Bag Purse, small backpack</p>
+                            <p class="text3"><span style="color:  #1a2a8c; font-weight: bold;">✕</span> Not Included</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="invoiceSidebar">
+                <div class="invoiceCard">
+                    <h4 class="invois">ინვოისი</h4>
+                    <div class="invoiceDetails">
+                        <div class="invRow">
+                            <span>ადგილი</span>
+                            <span>ფასი</span>
+                        </div>
+                        <div id="selectedSeatsSummary"></div>
+                        <hr>
+                        <div class="invRow total">
+                            <span>სულ:</span>
+                            <span id="totalPrice">0.00₾</span>
+                        </div>
+                    </div>
+                    <div class="terms">
+                        <input type="checkbox" id="egreeTetms" checked>
+                        <label class="readEgree" for="egreeTetms">წავიკითხე და ვეთანხმები წესებს</label>
+                    </div>
+
+                    <button class="submitBtn" id="finishBooking">ბილეთის რეგისტრაცია</button>
+                </div>
+            </aside>
+
+        </div>
+
+    </main>
+
+    <footer class="footerSR">
+        <div class="footerRailway">
+            <p class="footerText">©2023 <span class="stepRail">Step Railway. </span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+
+    <div class="modal-backdrop" id="seatModalOverlay">
+
+        <div class="seatModalContent">
+            <span class="closeModal" onclick="closeSeatModal()">&times;</span>
+
+            <div class="trainVisualContainer">
+                <div class="trainsImgs">
+
+                </div>
+                <p class="wagon-prompt">გთხოვთ აირჩიოთ ვაგონი</p>
+
+                <div id="seatsGrid"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal-backdrop" id="authModalOverlay" style="display: none;">
+    <div class="authCard" id="loginSection">
+        <div class="authHeader">
+            <h3>ავტორიზაცია</h3>
+            <p>გთხოვთ გაიაროთ ავტორიზაცია ბილეთის დასაჯავშნად</p>
+        </div>
+        <form class="authBody" id="loginForm">
+            <div class="inputGroup">
+                <label>ელ-ფოსტა</label>
+                <input type="email" id="loginEmail" placeholder="example@mail.com">
+            </div>
+            <div class="inputGroup">
+                <label>პაროლი</label>
+                <input type="password" id="loginPass" placeholder="******">
+            </div>
+            <button class="submitBtn" onclick="handleLogin()">შესვლა</button>
+            <div class="authFooter">
+                <span>არ გაქვს ანგარიში? <a href="javascript:void(0)" onclick="toggleAuth('register')">რეგისტრაცია</a></span>
+            </div>
+        </form>
+    </div>
+
+    <div class="authCard" id="registerSection" style="display: none;">
+    <div class="authHeader">
+        <h3>რეგისტრაცია</h3>
+        <p>შექმენი ანგარიში მარტივი დაჯავშნისთვის</p>
+    </div>
+    <form class="authBody" id="registerForm">
+        <div class="rowInputs">
+            <div class="inputGroup">
+                <label>სახელი</label>
+                <input type="text" id="regFirstName" placeholder="სახელი">
+            </div>
+            <div class="inputGroup">
+                <label>გვარი</label>
+                <input type="text" id="regLastName" placeholder="გვარი">
+            </div>
+        </div>
+
+        <div class="rowInputs">
+            <div class="inputGroup">
+                <label>ასაკი</label>
+                <input type="number" id="regAge" placeholder="18">
+            </div>
+            <div class="inputGroup">
+                <label>სქესი</label>
+                <select id="regGender">
+                   <option value="MALE">MALE</option>
+        <option value="FEMALE">FEMALE</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            <label>ტელეფონი</label>
+            <input type="text" id="regPhone" placeholder="Phone">
+        </div>
+        <div class="inputGroup">
+            <label>მისამართი</label>
+            <input type="text" id="regAddress" placeholder="თბილისი, რუსთაველის გამზ.">
+        </div>
+        
+        <div class="rowInputs">
+            <div class="inputGroup">
+                <label>Email</label>
+                <input type="email" id="regEmail" placeholder="mail@example.com">
+            </div>
+            <div class="inputGroup">
+                <label>Zip-Code</label>
+                <input type="text" id="regZip" placeholder="0100">
+            </div>
+        </div>
+
+        <div class="inputGroup">
+            <label>პაროლი</label>
+            <input type="password" id="regPass" placeholder="******">
+        </div>
+        
+        <input type="hidden" id="regAvatar" value="https://i.pravatar.cc/150">
+
+        <button class="submitBtn" onclick="signUp()">რეგისტრაცია</button>
+
+        <div class="authFooter">
+            <span>უკვე გაქვს ანგარიში? <a href="javascript:void(0)" onclick="toggleAuth('login')">შესვლა</a></span>
+        </div>
+    </form>
+</div>
+
+</div>
+
+
+    <script src="./js/header.js"></script>
+    <script src="./js/registration.js"></script>
+</body>
+
+</html>

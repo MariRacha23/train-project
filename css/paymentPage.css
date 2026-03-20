@@ -1,0 +1,122 @@
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/static/Roboto-Bold.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: roboto1;
+    src: url(../fonts/static/Roboto-Medium.ttf);
+    font-weight: 500;
+}
+
+.paymentPage{
+     width: 100%;
+    height: 200px;
+    background: #2d46b9;
+    display: flex;
+    padding-left: 100px;
+    align-items: center;
+}
+.textPaymant{
+   font-family: roboto;
+   font-size: 60px; 
+   letter-spacing: 2px;
+   color: white;
+}
+
+.payment-container {
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+ font-family: roboto;}
+
+.payment-card {
+    background: #eaedf3;
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 1300px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.total-price {
+     font-family: roboto;
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 35px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-family: roboto;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.input-group input {
+    padding: 15px 20px;
+    border: 1px solid #e1e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+     font-family: roboto1;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #3f51b5;
+}
+
+
+.row {
+   display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.btn-payment {
+   display: block; 
+   width: 300px; 
+margin: 20px auto 0;
+    padding: 14px;
+    background-color: #2e47b5; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+ font-family: roboto;
+     cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.btn-payment:hover {
+    background-color: #1a2a8c;
+
+}
+
+
+.footerSR {
+    background: #edeaea;
+    width: 100%;
+    height: 200px;
+    padding-top: 100px;
+}
+
+.footerRailway {
+    max-width: 1000px;
+    margin: auto;
+    border-top: 1px solid rgb(220, 216, 216);
+    padding-top: 40px;
+}
+
+.stepRail {
+    color: #2d46b9;
+}

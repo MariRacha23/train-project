@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/rezet.css">
+    <link rel="stylesheet" href="./css/heder.css">
+    <link rel="stylesheet" href="./css/paymentPage.css">
+</head>
+<body>
+    <header></header>
+
+    <main>
+
+        <div class="paymentPage">
+            <p class="textPaymant">გადახდის გვერდი</p>
+        </div>
+
+<div class="payment-container">
+   <form id="paymentForm" class="payment-card">
+    <p class="total-price">სულ გადასახდელი: <span id="display-amount">0.00</span>₾</p>
+    
+    <div class="input-group">
+        <label for="card-number">ბარათის ნომერი*</label>
+        <input type="text" id="card-number" placeholder="2456 1665 5155 5151" 
+               required >
+    </div>
+
+    <div class="row">
+        <div class="input-group">
+            <label for="expiry-date">მოქმედების ვადა*</label>
+            <input type="text" id="expiry-date" placeholder="MM/YY" 
+                   required >
+        </div>
+        <div class="input-group">
+            <label for="cvv">CVC / CVV</label>
+            <input type="password" id="cvv" maxlength="3" placeholder="***" 
+                   required >
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label for="cardholder-name">ბარათის მფლობელი</label>
+        <input type="text" id="cardholder-name" placeholder="J. Smith" required>
+    </div>
+
+    <button type="submit" id="pay-button" class="btn-payment">გადახდა</button>
+</form>
+</div>
+</main>
+
+<footer class="footerSR">
+        <div class="footerRailway">
+            <p class="footerText">©2023 <span class="stepRail">Step Railway. </span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+
+    <script src="./js/header.js"></script>
+    <script src="./js/paymentPage.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/rezet.css">
+    <link rel="stylesheet" href="./css/styl.css">
+    <link rel="stylesheet" href="./css/heder.css">
+</head>
+
+<body>
+
+    <header></header>
+
+    <main>
+        <section class="main-section">
+            <div class="container">
+                <h1 class="main-title">შეიძინეთ მატარებლის ბილეთები ონლაინ</h1>
+                <p class="sub-title">გისურვებთ ბედნიერ მგზავრობას</p>
+            </div>
+
+            <div class="booking-card">
+                <h2 class="card-title">დაჯავშნეთ მატარებლის ბილეთი</h2>
+
+                <div class="search-inputs">
+                    <div class="input-field">
+                        <select id="fromStation">
+                            <option value="1">თბილისი</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <select id="toStation">
+                            <option value="1">თბილისი</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" onfocus="(this.type='date')" placeholder="გამგზავრების თარიღი"
+                            id="travelDate">
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="passengers" placeholder="მგზავრების რაოდენობა" min="1" value="1">
+                    </div>
+                    <button class="search-main-btn">მატარებლის მოძებნა</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="secondSection">
+            <div class="secondMainContainer">
+                <div class="TBPcontaina">
+                    <img class="stationImg" src="./imgs/TbilisiBatuliPoti.png" alt="TbilisiBatuliPoti" width="100%">
+                </div>
+                <div class="information">
+                    <h2 class="train-ticket">მატარებლის ბილეთები</h2>
+                    <p class="infoText">რკინიგზის ბილეთების შესაძენად თქვენ დაგჭირდებათ თითოეული მგზავრის პირადი ნომერი.
+                        გთხოვთ მოამზადოთ ეს ინფორმაცია წინასწარ.</p>
+                    <div class="offersContainer">
+                        <div class="offer">
+                            <img src="./imgs/unoffer.png" alt="unoffer">
+                            <p class="text">შეუზღუდავი შეთავაზებები</p>
+                        </div>
+                        <div class="offer">
+                            <img src="./imgs/suppor24.png" alt="support">
+                            <p class="text">24X7 მხარდაჭერა</p>
+                        </div>
+                        <div class="offer">
+                            <img src="./imgs/secure100.png" alt="secure100">
+                            <p class="text">100% უსაფრთხო</p>
+                        </div>
+                        <div class="offer">
+                            <img src="./imgs/truspay.png" alt="truspay">
+                            <p class="text">100% უსაფრთხო გადახდა</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footerSR">
+        <div class="footerRailway">
+            <p class="footerText">©2023 <span class="stepRail">Step Railway. </span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

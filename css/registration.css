@@ -1,0 +1,753 @@
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/static/Roboto-Bold.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: roboto1;
+    src: url(../fonts/static/Roboto-Medium.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: roboto2;
+    src: url(../fonts/static/Roboto-Regular.ttf);
+    font-weight: 400;
+}
+
+.registrationTitle {
+    width: 100%;
+    height: 200px;
+    background: #2d46b9;
+    display: flex;
+    padding-left: 100px;
+    align-items: center;
+}
+
+.regText {
+    font-family: roboto;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+
+}
+
+.registration-wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1500px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+.forms-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin: 20px;
+}
+
+.enterYourDet {
+    font-family: roboto;
+    font-size: 20px;
+}
+
+.selectedTreinCard {
+    background: #f8faff;
+    border: 1px solid #e0e7ff;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.train-details-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #c7d2fe;
+    padding-bottom: 15px;
+}
+
+.train-number {
+    background: #3f51b5;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: roboto1;
+    font-size: 14px;
+}
+
+.train-route-name {
+    font-family: roboto;
+    font-size: 18px;
+    color: #1a237e;
+    margin: 0;
+}
+
+.train-times-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.train-times-row::after {
+    content: "";
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    top: 25px;
+    height: 2px;
+    background: #e0e7ff;
+    z-index: 1;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+    z-index: 2;
+    background: #f8faff;
+    padding: 0 10px;
+}
+
+.time-val {
+    font-family: roboto;
+    font-size: 24px;
+    color: #333;
+}
+
+.station-name {
+    font-family: roboto2;
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.train-times-row .time-block:last-child {
+    text-align: right;
+    align-items: flex-end;
+}
+
+.info {
+    font-family: roboto1;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+
+.inputMP {
+    flex: 1;
+    padding: 20px;
+    height: 55px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: roboto1;
+    font-size: 16px;
+    border: 1px solid #ddd;
+}
+
+.BaggageInformation {
+    display: flex;
+    gap: 20px;
+}
+
+.bags {
+    display: flex;
+    gap: 10px;
+}
+
+.imgBags {
+    border: 1px solid rgb(189, 189, 230);
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.text1 {
+    font-family: roboto;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.text2 {
+    font-family: roboto2;
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+
+.text3 {
+    font-family: roboto2;
+    font-size: 15px;
+}
+
+.BaggageInformation {
+    border-bottom: 2px dashed rgb(125, 167, 196);
+    padding-bottom: 20px;
+}
+
+
+.sectionBlock {
+    border-top: 2px dashed rgb(125, 167, 196);
+    padding: 15px 0;
+}
+
+
+.passenger-block {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.passenger-inputs {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.passenger {
+    padding-bottom: 10px;
+}
+
+.reg-input,
+.reg-input1 {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: roboto2;
+    font-size: 14px;
+    min-width: 150px;
+}
+
+.select-seat-btn {
+    background-color: #1a2a8c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 30px;
+    cursor: pointer;
+}
+
+
+
+.seat-badge {
+    background: #3f51b5;
+    color: white;
+    padding: 11px 15px;
+    border-radius: 4px;
+    font-family: roboto;
+    display: inline-block;
+}
+
+
+.footerSR {
+    background: #edeaea;
+    width: 100%;
+    height: 200px;
+    padding-top: 100px;
+}
+
+.footerRailway {
+    max-width: 1000px;
+    margin: auto;
+    border-top: 1px solid rgb(220, 216, 216);
+    padding-top: 40px;
+}
+
+.stepRail {
+    color: #2d46b9;
+}
+
+.invoiceCard {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #e7edff;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+.invois {
+    font-family: roboto;
+    font-size: 20px;
+    align-self: center;
+    color: #0424b3;
+}
+
+.invRow {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    font-family: roboto1;
+    font-size: 14px;
+}
+
+.total {
+    font-family: roboto;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+hr {
+    border-color: rgb(179, 179, 211);
+}
+
+.readEgree {
+    font-family: roboto1;
+    font-size: 15px;
+}
+
+.submitBtn {
+    position: relative;
+    background-color: #1a2a8c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 30px;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+.submitBtn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 100px;
+    background-color: #2d46b9;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: -1;
+}
+
+.submitBtn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.check {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #1a2a8c;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    transition: all 0.2s ease;
+
+}
+
+.check:checked {
+    background: white;
+    border-color: #1a2a8c;
+}
+
+.check::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: -2px;
+    width: 5px;
+    height: 10px;
+    border: solid #1a2a8c;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.check:checked::after {
+    display: block;
+}
+
+.reg-input:invalid:not(:placeholder-shown),
+.inputMP:invalid:not(:placeholder-shown) {
+    border: 2px solid red;
+}
+
+.reg-input:valid,
+.inputMP:valid {
+    border: 2px solid green;
+}
+
+.inputMP:focus {
+    border-color: #1a2a8c;
+    box-shadow: 0 0 5px rgba(26, 42, 140, 0.2);
+}
+
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.seatModalContent {
+    background-color: white;
+    padding: 50px;
+    border-radius: 15px;
+    position: relative;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.closeModal {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 35px;
+    color: #0424b3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.closeModal:hover {
+    color: red;
+    transform: scale(1.1) rotate(90deg);
+}
+
+.trainsImgs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 25px;
+    flex-wrap: nowrap;
+    min-height: 100px;
+}
+
+.wagon-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trainImg {
+    height: 60px;
+    width: auto;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.wagon-hover-btn {
+    position: absolute;
+    bottom: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    background-color: rgba(26, 42, 140, 0.9);
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: roboto2;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: all 0.4s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 5;
+}
+
+
+.wagon-wrapper:hover .trainImg {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.wagon-wrapper:hover .wagon-hover-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.trainVisualContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 25px;
+}
+
+.wagon-prompt {
+    font-family: 'roboto1', sans-serif;
+    font-size: 18px;
+    color: #333;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+
+#seatsGrid {
+    display: grid;
+    grid-template-columns: 50px 50px  50px 50px;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    justify-items: center;
+    background: #f9f9f9;
+    border-radius: 10px;
+
+}
+
+#seatsGrid div:nth-child(4n+2) {
+    margin-right: 40px;
+}
+#seatsGrid div:nth-child(4n+1) {
+    margin-right: 30px;
+}
+#seatsGrid div{
+width: 40px;
+height: 40px;
+}
+
+.seat {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: roboto2;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+
+
+.seat.occupied {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+    border: 1px solid #e5e7eb;
+}
+
+.seat.available {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #bbdefb;
+    cursor: pointer;
+}
+
+.seat.available:hover {
+    background-color: #2ecc71;
+    color: white;
+    transform: scale(1.1);
+    border-color: #27ae60;
+}
+
+.seat.selected {
+    background-color: #fa301a;
+    color: white;
+    border-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.Warn {
+    color: red;
+    font-family: roboto2;
+    font-size: 20px;
+}
+
+
+
+#authModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.authCard {
+    background: white;
+    width: 95%;
+    max-width: 550px;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalPop 0.3s ease-out;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.authHeader h3 {
+    color: #1a2a8c;
+    font-size: 24px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-family: 'roboto1', sans-serif;
+}
+
+.authHeader p {
+    color: #777;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.inputGroup label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+.inputGroup input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.inputGroup input:focus {
+    border-color: #1a2a8c;
+    box-shadow: 0 0 8px rgba(26, 42, 140, 0.15);
+    outline: none;
+}
+
+.rowInputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.authFooter {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+.authFooter a {
+    color: #1a2a8c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.authFooter a:hover {
+    text-decoration: underline;
+}
+
+
+.user-info-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f0f7ff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #d1e3ff;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+
+.logout-link {
+    color: #ff4757;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.logout-link:hover {
+    background: #ffe0e3;
+    text-decoration: underline;
+}
+
+
+.hello-text {
+    font-family: 'roboto1', sans-serif;
+    color: #2d46b9;
+    margin: 0;
+}
+
+.forms-container .inputGroup {
+    flex-direction: row; 
+    align-items: center;
+}
+
+#regGender{
+   padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+    color: #444;
+}
+
+@media (max-width:1140px) {
+
+    .footerRailway {
+        margin: 20px;
+    }
+}
+
+@media (max-width:400px) {
+    .footerText {
+        font-size: 12px;
