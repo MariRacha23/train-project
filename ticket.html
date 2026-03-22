@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,62 +9,107 @@
     <link rel="stylesheet" href="./css/heder.css">
     <link rel="stylesheet" href="./css/ticket.css">
 </head>
+
 <body>
     <header></header>
     <main>
-        <div class="invoice-box" id="invoice">
-    <div class="header">
-        <h2>Step Railway</h2>
-        <img src="./imgs/stepLogo.jpg" alt="Logo">
+        <section class="page-banner">
+            <div class="container">
+                <h1>ბილეთის ყიდვა წარმატებით დასრულდა</h1>
+                <p>გმადლობთ, რომ სარგებლობთ Step Railway-ს მომსახურებით!</p>
+            </div>
+        </section>
+
+
+        <section class="invoice-container">
+
+            <div class="invoice-box" id="invoice">
+                <div class="breadcrumb-container">
+                    <ul class="breadcrumbs">
+                        <li class="completed">Order</li>
+                        <li class="completed">Summary</li>
+                        <li class="completed">Payment</li>
+                        <li class="active">Done</li>
+                    </ul>
+                </div>
+
+                <div class="success-status">
+                    <div class="check-icon">✓</div>
+                    <h2>Payment Successful</h2>
+                </div>
+
+                <div class="ticket-actions no-print">
+                    <button onclick="window.print()" class="action-btn print-btn">
+                        <span>🖨️</span> ამობეჭდვა
+                    </button>
+                    <button onclick="downloadTicket()" class="action-btn download-btn">
+                        <span>💾</span> ჩამოტვირთვა (PDF)
+                    </button>
+                </div>
+<div class="checkTiketCont">
+                <div class="header">
+                    <h2>Step Railway</h2>
+                    <img src="./imgs/stepLogo.jpg" alt="Logo">
+                </div>
+               <a href="check.html" class="nav-btn">ბილეთის შემოწმება/დაბრუნება</a>
+               </div>
+                <div class="ticket-meta">
+                    <p>ბილეთის ნომერი: <span id="ticket-id"></span></p>
+                    <p>გაცემის თარიღი: <span id="issue-date"></span></p>
+                </div>
+
+                <div class="travel-details">
+                    <div>გამგზავრება: <br><strong id="dep-info"></strong></div>
+                    <div class="arrival">ჩასვლა: <br><strong id="arr-info"></strong></div>
+                    <div>თარიღი: <br><strong id="travel-date"></strong></div>
+                </div>
+
+                <div class="contact-section">
+                    <h3>საკონტაქტო ინფორმაცია:</h3>
+                    <div class="contact-details">
+                        <div class="contact-box"> იმეილი: <span id="ticket-email"></span></div>
+                        <div class="contact-box">ტელ. ნომერი: <span id="ticket-phone"></span></div>
+                    </div>
+                </div>
+                  
+                <div class="passengers-wrapper">
+    <p class="passengersList">მგზავრები:</p>
+    
+    <div class="passengers-header">
+        <div>სახელი</div>
+        <div>გვარი</div>
+        <div>პირადი ნომერი</div>
+        <div>ადგილი</div>
+        <div>ვაგონი</div>
     </div>
 
-    <div class="ticket-meta">
-        <p>ბილეთის ნომერი: <span id="ticket-id"></span></p>
-        <p>გაცემის თარიღი: <span id="issue-date"></span></p>
-    </div>
-
-    <div class="travel-details">
-        <div>გამგზავრება: <br><strong id="dep-info"></strong></div>
-        <div>ჩასვლა: <br><strong id="arr-info"></strong></div>
-        <div>თარიღი: <br><strong id="travel-date"></strong></div>
-    </div>
-
-    <div class="contact-section">
-    <h3>საკონტაქტო ინფორმაცია:</h3>
-    <div class="contact-details">
-        <div class="contact-box"><strong>იმეილი:</strong> <span id="ticket-email"></span></div>
-        <div class="contact-box"><strong>ტელ. ნომერი:</strong> <span id="ticket-phone"></span></div>
-    </div>
+    <div id="passenger-rows"></div>
 </div>
 
-    <table class="passengers-table">
-        <thead>
-            <tr>
-                <th>სახელი</th>
-                <th>გვარი</th>
-                <th>პირადი ნომერი</th>
-                <th>ადგილი</th>
-                <th>ვაგონი</th>
-            </tr>
-        </thead>
-        <tbody id="passenger-rows"></tbody>
-    </table>
-
-    <div class="payment-info">
-        <div class="card-details">
-            <p id="ticket-holder-name"></p>
-            <p>Credit Card - <span id="ticket-card-mask"></span></p>
-        </div>
-        <div class="total-sum">
-            სულ გადახდილი: <strong id="final-amount"></strong>
-        </div>
-    </div>
+                <div class="payment-info">
+                    <div class="card-details">
+                        <h2 class="peimentTitle">Payment info:</h2>
+                        <p id="ticket-holder-name"></p>
+                        <p class="cteditCard">Credit Card - <span id="ticket-card-mask"></span></p>
+                    </div>
+                    <div class="total-sum">
+                        სულ გადახდილი: <strong id="final-amount"></strong>
+                    </div>
+                </div>
+                <div class="finalText">
+ 
+                <p class="text1">ინვოისი იქმნება კომპიუტერის მიერ და ვალიდურია ბეჭედის და ხელმოწერის გარეშე</p>
+                <p class="text2">გადმოწერეთ ბილეთი ან შეინახეთ ბილეთის ნომერი ადგილზე წარსადგენად.</p>
 </div>
+
+
+            </div>
+        </section>
     </main>
 
 
 
-<footer class="footerSR">
+    <footer class="footerSR">
         <div class="footerRailway">
             <p class="footerText">©2023 <span class="stepRail">Step Railway. </span> ყველა უფლება დაცულია.</p>
         </div>
@@ -72,4 +118,5 @@
     <script src="./js/header.js"></script>
     <script src="./js/ticket.js"></script>
 </body>
+
 </html>

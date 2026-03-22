@@ -86,10 +86,10 @@ searchBtn.addEventListener("click", () => {
   const selectedDate = new Date(dateInputVal);
   const dayName = weekDays[selectedDate.getDay()];
 
-  localStorage.setItem("selectedDay", dayName);
-  localStorage.setItem("passengerCount", passengers);
-  localStorage.setItem("from", fromStation);
-  localStorage.setItem("to", toStation);
+  sessionStorage.setItem("selectedDay", dayName);
+  sessionStorage.setItem("passengerCount", passengers);
+  sessionStorage.setItem("from", fromStation);
+  sessionStorage.setItem("to", toStation);
 
   window.location.href = "result.html";
 });

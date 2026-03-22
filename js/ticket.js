@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  let rawTicketId = localStorage.getItem("lastTicketId");
+  let rawTicketId = sessionStorage.getItem("lastTicketId");
 
   if (!rawTicketId) {
     console.error("ბილეთის ID ვერ მოიძებნა LocalStorage-ში");
@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (holderElem)
     holderElem.innerText =
-      localStorage.getItem("cardHolder") || "მფლობელი უცნობია";
+      sessionStorage.getItem("cardHolder") || "მფლობელი უცნობია";
   if (maskElem)
     maskElem.innerText =
-      localStorage.getItem("cardMask") || "**** **** **** ****";
+      sessionStorage.getItem("cardMask") || "**** **** **** ****";
   if (issueDateElem)
     issueDateElem.innerText = new Date().toLocaleDateString("ka-GE");
 
@@ -67,13 +67,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           total += price;
 
           rows.innerHTML += `
-                        <tr>
-                            <td>${p.name || "-"}</td>
-                            <td>${p.surname || "-"}</td>
-                            <td>${p.idNumber || "-"}</td>
-                            <td>${p.seat?.number || "-"}</td>
-                            <td>${p.seat?.vagon?.name || "-"}</td>
-                        </tr>
+                        <div class="passenger-row">
+            <span data-label="სახელი">${p.name || "-"}</span>
+            <span data-label="გვარი">${p.surname || "-"}</span>
+            <span data-label="პირადი ნომერი">${p.idNumber || "-"}</span>
+            <span data-label="ადგილი">${p.seat?.number || "-"}</span>
+            <span data-label="ვაგონი">${p.seat?.vagonName || p.seat?.vagonId || "-"}</span>
+        </div>
                     `;
         });
 
@@ -89,3 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("ბილეთის ჩატვირთვის შეცდომა:", err);
   }
 });
+
+function downloadTicket() {
+  window.print();
+}

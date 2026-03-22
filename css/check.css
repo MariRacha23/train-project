@@ -1,0 +1,356 @@
+.page-banner {
+    display: flex;
+    justify-content: center;
+    background-color: #3f51b5;
+    height: 150px;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 25px;
+    color: black;
+    padding: 100px 0;
+}
+
+.search-container {
+    background-color: #f8f9fa;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box {
+    background: white;
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #ddd;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    background: transparent;
+}
+
+.search-box button {
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.search-box button:hover {
+    background-color: #2d3d91;
+    box-shadow: 0 2px 8px rgba(63, 81, 181, 0.4);
+}
+
+#ticket-result-container {
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    min-height: 400px;
+}
+
+.delete-action-zone {
+    max-width: 800px;
+    margin: 30px auto;
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ffebee;
+}
+
+.cancel-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cancel-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+.cancel-btn:active {
+    transform: translateY(0);
+}
+
+.error-msg {
+    color: #e74c3c;
+    background: #fdf2f2;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+.footerSR {
+    background: #edeaea;
+    width: 100%;
+    height: 200px;
+    padding-top: 100px;
+}
+
+.footerRailway {
+    max-width: 1000px;
+    margin: auto;
+    border-top: 1px solid rgb(220, 216, 216);
+    padding-top: 40px;
+}
+
+.stepRail {
+    color: #2d46b9;
+}
+
+
+.invoice-box {
+    background: white;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    font-weight: 500;
+    border: 1px solid #eee;
+}
+
+.invoice-box .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f0f2f5;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.ticket-meta {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.ticket-meta span {
+    color: #333;
+    font-weight: 500;
+}
+
+.travel-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    background: #fcfcfc;
+    padding: 20px;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.travel-details strong {
+    color: #3f51b5;
+    font-size: 16px;
+}
+
+.contact-section {
+    margin-bottom: 30px;
+}
+
+.contact-section h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+
+.passengers-header,
+.passenger-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.passengersList {
+    padding: 10px;
+}
+
+.passengers-header {
+    background: #f8f9fa;
+    font-weight: bold;
+}
+
+
+
+
+.success-cancel-message {
+    text-align: center;
+    padding: 80px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.success-title {
+    color: #3f51b5;
+    font-weight: 700;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.success-text {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+
+
+
+.check-icon {
+    width: 70px;
+    height: 70px;
+    background: #27ae60;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+}
+
+
+@media (max-width: 1235px) {
+
+    .footerRailway {
+        margin: 20px;
+    }
+
+    .contact-box {
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 700px) {
+    .travel-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .search-box {
+        flex-direction: column;
+        height: auto;
+        border-radius: 15px;
+        padding: 15px;
+        gap: 10px;
+    }
+
+    #ticket-id-input {
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+    }
+
+    .search-box button {
+        width: 100%;
+        height: 45px;
+        border-radius: 8px;
+    }
+
+    .footerText {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 20px;
+        padding: 100px 10px;
+    }
+
+    .passengers-header {
+        display: none;
+    }
+
+    .passenger-row {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+
+    }
+
+    .passenger-row span {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border-bottom: 1px dashed #eee;
+    }
+
+    .passenger-row span::before {
+        content: attr(data-label) ": ";
+        font-weight: bold;
+        color: #555;
+    }
+
+    .invoice-box {
+        padding: 40px 10px;
+        margin: 0;
+    }
+
+    #ticket-result-container {
+        padding: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 18px;
+    }
+}

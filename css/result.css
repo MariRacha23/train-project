@@ -1,38 +1,22 @@
-@font-face{
-    font-family: roboto;
-    src: url(../fonts/static/Roboto-Bold.ttf);
-    font-weight: 700;
-}
-@font-face{
-    font-family: roboto1;
-    src: url(../fonts/static/Roboto-Medium.ttf);
-    font-weight: 500;
-}
-@font-face{
-    font-family: roboto2;
-    src: url(../fonts/static/Roboto-Regular.ttf);
-    font-weight: 400;
-}
-
-
 .choisTrain {
     width: 100%;
     height: 200px;
     background: #2d46b9;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
+    padding-bottom: 20px;
 }
 
 .results-title {
-    font-family: roboto;
+    font-weight: 700;
     color: white;
     font-size: 20px;
     letter-spacing: 1.5px;
 }
 
 .trainTitl {
-    font-family: roboto;
+    font-weight: 700;
     text-align: center;
     padding: 100px 0 10px;
     font-size: 32px;
@@ -85,7 +69,7 @@
 }
 
 .time {
-    font-family: roboto;
+    font-weight: 700;
     font-size: 20px;
     color: #333;
     margin: 0;
@@ -99,14 +83,14 @@
 
 .station,
 .name {
-    font-family: roboto1;
+    font-weight: 500;
     font-size: 15px;
     color: #777;
     margin-top: 5px;
 }
 
 .number {
-    font-family: roboto2;
+    font-weight: 400;
     font-size: 12px;
     color: #999;
 }
@@ -119,7 +103,7 @@
     padding: 12px 30px;
     border-radius: 6px;
     cursor: pointer;
- font-family: roboto;
+    font-weight: 700;
 }
 
 .footerSR {
@@ -166,7 +150,7 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         border: 1px solid #eee;
         gap: 15px;
-        margin: 0 20px 20px ;
+        margin: 0 20px 20px;
     }
 
     .col-name,
@@ -209,6 +193,7 @@
         font-size: 12px;
         color: #666;
     }
+
     .book-btn {
         grid-column: 1 / span 2;
         width: 50%;
@@ -220,15 +205,24 @@
     }
 }
 
-@media (max-width:535px){
-.results-title{
-    font-size: 15px;
-    margin: 0 20px;
+@media (max-width:535px) {
+    .results-title {
+        font-size: 15px;
+        margin: 0 20px;
+        line-height: 1.5;
+    }
+
+    .trainTitl {
+        font-size: 20px;
+    }
+
+    .footerText {
+        font-size: 12px;
+    }
 }
-.trainTitl{
-    font-size: 20px;
-}
-.footerText{
-    font-size: 12px;
-}
+
+@media (max-width:350px) {
+    .col-name {
+        flex-direction: column;
+    }
 }

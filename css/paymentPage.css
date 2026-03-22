@@ -1,35 +1,26 @@
-@font-face {
-    font-family: roboto;
-    src: url(../fonts/static/Roboto-Bold.ttf);
-    font-weight: 700;
-}
-
-@font-face {
-    font-family: roboto1;
-    src: url(../fonts/static/Roboto-Medium.ttf);
-    font-weight: 500;
-}
-
-.paymentPage{
-     width: 100%;
+.paymentPage {
+    width: 100%;
     height: 200px;
     background: #2d46b9;
     display: flex;
     padding-left: 100px;
     align-items: center;
 }
-.textPaymant{
-   font-family: roboto;
-   font-size: 60px; 
-   letter-spacing: 2px;
-   color: white;
+
+.textPaymant {
+    font-weight: 700;
+    font-size: 60px;
+    letter-spacing: 2px;
+    color: white;
+    padding-top: 100px;
 }
 
 .payment-container {
     display: flex;
     justify-content: center;
     padding: 50px 20px;
- font-family: roboto;}
+    font-weight: 700;
+}
 
 .payment-card {
     background: #eaedf3;
@@ -37,11 +28,11 @@
     border-radius: 12px;
     width: 100%;
     max-width: 1300px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .total-price {
-     font-family: roboto;
+    font-weight: 700;
     font-size: 14px;
     color: #444;
     margin-bottom: 35px;
@@ -55,7 +46,7 @@
 
 .input-group label {
     font-size: 13px;
-    font-family: roboto;
+    font-weight: 700;
     margin-bottom: 8px;
     color: #333;
 }
@@ -65,7 +56,7 @@
     border: 1px solid #e1e8f0;
     border-radius: 6px;
     font-size: 14px;
-     font-family: roboto1;
+    font-weight: 500;
     outline: none;
     transition: border 0.3s;
 }
@@ -76,23 +67,23 @@
 
 
 .row {
-   display: grid;
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
 .btn-payment {
-   display: block; 
-   width: 300px; 
-margin: 20px auto 0;
+    display: block;
+    width: 300px;
+    margin: 20px auto 0;
     padding: 14px;
-    background-color: #2e47b5; 
+    background-color: #2e47b5;
     color: white;
     border: none;
     border-radius: 6px;
     font-size: 16px;
- font-family: roboto;
-     cursor: pointer;
+    font-weight: 700;
+    cursor: pointer;
     margin-top: 10px;
     transition: background 0.3s;
 }
@@ -119,4 +110,39 @@ margin: 20px auto 0;
 
 .stepRail {
     color: #2d46b9;
+}
+
+@media (max-width:815px) {
+    .textPaymant {
+        font-size: 50px;
+    }
+
+    .footerRailway {
+        margin: 20px;
+    }
+}
+
+@media (max-width:600px) {
+    .textPaymant {
+        font-size: 30px;
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width:425px) {
+    .btn-payment {
+        width: 200px;
+    }
+
+    .footerText {
+        font-size: 12px;
+    }
+
+    .payment-card {
+        padding: 10px;
+    }
 }

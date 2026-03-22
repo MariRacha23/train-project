@@ -1,117 +1,376 @@
-@font-face{
-    font-family: roboto;
-    src: url(../fonts/static/Roboto-Bold.ttf);
+@font-face {
+    font-family: 'RobotoCustom';
+    src: url('../fonts/static/Roboto-Bold.ttf');
     font-weight: 700;
 }
 
-.headerImg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../imgs/tbilisi.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 350px;
-
+@font-face {
+    font-family: 'RobotoCustom';
+    src: url('../fonts/static/Roboto-Medium.ttf');
+    font-weight: 500;
 }
-.geoReil{
+
+@font-face {
+    font-family: 'RobotoCustom';
+    src: url('../fonts/static/Roboto-Regular.ttf');
+    font-weight: 400;
+}
+
+body {
+    font-family: 'RobotoCustom', sans-serif;
+    font-weight: 400;
+    background-color: #f4f7fe;
+}
+
+.imgIcon {
+    display: none;
+}
+
+header {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
+    width: 100%;
+    z-index: 9;
+    transition: background 0.3s ease;
+}
+
+.geoReil {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+header.scrolled .geoReil {
+    background: white;
+    padding: 10px 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-text a,
+#userWelcome {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+header.scrolled .welcome-text a,
+header.scrolled #userWelcome {
+    color: #1a2a8c;
+}
+
+.auth-button,
+.logout-button {
+    height: 42px;
+    padding: 0 22px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+}
+
+
+
+.nav-btn {
+    background: #1a2a8c;
+    color: white;
+    border: none;
+    height: 42px;
+    padding: 0 22px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-btn:hover {
+    background: #2d46b9;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+header.scrolled .nav-btn {
+    background: #1a2a8c;
+    color: white;
+    border: none;
+}
+
+header.scrolled .nav-btn:hover {
+    background: #2d46b9;
+}
+
+.auth-button {
+    background: #1a2a8c;
+    color: white;
+}
+
+.auth-button:hover {
+    background: #2d46b9;
+}
+
+.logout-button {
+    background: #e74c3c;
+    color: white;
+}
+
+.headerImg {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../imgs/tbilisi.jpg) center/cover no-repeat;
     width: 100%;
     height: 300px;
     display: flex;
-    justify-content: space-between;
-    align-items: end;
-    padding: 20px 50px;
-    transition: background-color 0.4s ease, padding 0.4s ease;
-    background-color: transparent;
-}
-
-.logo a {
-     font-family: roboto;
-    font-size: 32px;
-    color: white;
-    letter-spacing: 2px;
-}
-
-.geoReil.scrolled {
-    height: 100px;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     align-items: center;
 }
 
-.geoReil.scrolled .logo a {
-    color: black;
-}
-
-.other-page-nav {
-    height: 100px; 
-    background-color: white;
-    position: relative; 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: flex; 
-    justify-content: space-between;
+#authModalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
     align-items: center;
-    padding: 0 50px;
-    z-index: 3;
+    justify-content: center;
+    z-index: 11;
+    backdrop-filter: blur(5px);
 }
 
-.other-page-nav .logo a {
-    color: black;
-    text-decoration: none;
-}
-.check-back{
+.authCard {
+    background: white;
+    width: 95%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 20px;
     position: relative;
-    background-color: #1a2a8c; 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    font-weight: 400;
+}
+
+.authCard h2 {
+    font-weight: 700;
+    color: #1a2a8c;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.inputGroup label {
+    font-weight: 500;
+    font-size: 13px;
+    color: #666;
+    padding-left: 5px;
+}
+
+.inputGroup input,
+.inputGroup select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    background: #f9f9f9;
+}
+
+.inputGroup input:focus {
+    border-color: #1a2a8c;
+    outline: none;
+    background: white;
+}
+
+.submitSoan {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.submitBtn {
+    background: #1a2a8c;
     color: white;
-    border: none;
-     border-radius: 5px;
     padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
     cursor: pointer;
-    overflow: hidden; 
-    z-index: 1;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
 }
 
-.check-back::before {
-   content: '';
+.submitBtn:hover {
+    background: #2d46b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26, 42, 140, 0.3);
+}
+
+
+.close-modal {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 100px;
-    background-color:#2d46b9; 
-    transform: translate(-50%, -50%); 
-    transition: width 0.6s ease, height 0.6s ease;
-    z-index: -1; 
-}
-.check-back:hover::before {
-      width: 300px; 
-    height: 300px;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: 700;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
 }
 
-.hidenimg{
-    display: none;
+.close-modal:hover {
+    color: #e74c3c;
+}
+.regText{
+    font-size: 25px;
+    line-height: 1.5;
 }
 
-@media  (max-width:815px){
-.hidenimg{
+.reg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-card {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: slideIn 0.3s ease-out;
+}
+.profile-info {
+    padding: 10px 0;
+}
+
+.profile-info p {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 0;
+    font-size: 15px;
+    color: #444;
+}
+.profile-info p strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.separator {
+  margin: 25px 0;
+    border: none;
+    border-top: 2px dashed #eee;
+}
+.logout-link {
     display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: #e74c3c;
+    font-weight: 600;
+    padding: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.2s;
+    margin-top: 10px;
 }
-.imgIcon{
-    width: 80px;
-}
-.geotext{
-    display: none;
-}
+.logout-link:hover {
+    background-color: #fdf2f2;
 }
 
-@media  (max-width:500px){
-.check-back{
-    margin-left: 15px;
-    padding: 15px;
-    font-size: 12px;
+@keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(8px); 
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.profile-body {
+    padding: 24px;
+}
+
+.profile-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.change-pass-title {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.profile-submit-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    cursor: pointer;
+}
+.geotext {
+color: white;
+font-size: 30px;
+}
+
+@media (max-width: 815px) {
+    .geotext {
+        display: none;
+    }
+
+    .imgIcon {
+        display: block;
+        width: 50px;
+    }
+
+    .geoReil {
+        padding: 20px;
+    }
+
+    .header-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 815px) {
+   .welcome-text a {
+    font-size: 20px;
+   }
 }

@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("trainListContainer");
 
-  const from = localStorage.getItem("from");
-  const to = localStorage.getItem("to");
-  const day = localStorage.getItem("selectedDay");
+  const from = sessionStorage.getItem("from");
+  const to = sessionStorage.getItem("to");
+  const day = sessionStorage.getItem("selectedDay");
 
   console.log("ვეძებთ შემდეგ პარამეტრებს:", { from, to, day });
   try {
@@ -35,7 +35,7 @@ function renderTrains(trains, container) {
         <div class="train-item">
                 <div class="col-name">
                     <span class="number">#${train.number}</span>
-                    <p class="name">${train.name} Expres</p>
+                    <p class="name">${train.name}  Expres </p>
                 </div>
                 <div class="col-departure dashedLine">
                     <p class="time">${train.departure}</p> 
@@ -54,14 +54,23 @@ function renderTrains(trains, container) {
 }
 
 function bookNow(trainId) {
-  localStorage.setItem("selectedTrainId", trainId);
+  sessionStorage.setItem("selectedTrainId", trainId);
+  const token = sessionStorage.getItem("accessToken");
 
-  console.log("archeuli matareblis ID", trainId);
+  console.log("Token value:", token);
+  if (
+    !token ||
+    token === "undefined" ||
+    token === "null" ||
+    token.length < 10
+  ) {
+    console.warn("ავტორიზაცია საჭიროა!");
+    const authModal = document.getElementById("authModalOverlay");
+    if (authModal) {
+      authModal.style.display = "flex";
+    }
+    return;
+  }
 
   window.location.href = "registration.html";
-
 }
-
-
-
-

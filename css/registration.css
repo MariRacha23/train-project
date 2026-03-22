@@ -1,21 +1,3 @@
-@font-face {
-    font-family: roboto;
-    src: url(../fonts/static/Roboto-Bold.ttf);
-    font-weight: 700;
-}
-
-@font-face {
-    font-family: roboto1;
-    src: url(../fonts/static/Roboto-Medium.ttf);
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: roboto2;
-    src: url(../fonts/static/Roboto-Regular.ttf);
-    font-weight: 400;
-}
-
 .registrationTitle {
     width: 100%;
     height: 200px;
@@ -26,11 +8,11 @@
 }
 
 .regText {
-    font-family: roboto;
+    font-weight: 700;
     color: white;
     font-size: 20px;
     letter-spacing: 1.5px;
-
+    padding-top: 100px;
 }
 
 .registration-wrapper {
@@ -53,7 +35,7 @@
 }
 
 .enterYourDet {
-    font-family: roboto;
+    font-weight: 700;
     font-size: 20px;
 }
 
@@ -78,12 +60,12 @@
     color: white;
     padding: 4px 12px;
     border-radius: 20px;
-    font-family: roboto1;
+    font-weight: 500;
     font-size: 14px;
 }
 
 .train-route-name {
-    font-family: roboto;
+    font-weight: 700;
     font-size: 18px;
     color: #1a237e;
     margin: 0;
@@ -118,13 +100,13 @@
 }
 
 .time-val {
-    font-family: roboto;
+    font-weight: 700;
     font-size: 24px;
     color: #333;
 }
 
 .station-name {
-    font-family: roboto2;
+    font-weight: 400;
     font-size: 14px;
     color: #666;
     text-transform: uppercase;
@@ -138,7 +120,7 @@
 }
 
 .info {
-    font-family: roboto1;
+    font-weight: 500;
     font-size: 20px;
     padding-bottom: 10px;
 }
@@ -150,14 +132,18 @@
     height: 55px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-family: roboto1;
+    font-weight: 500;
     font-size: 16px;
     border: 1px solid #ddd;
 }
 
 .BaggageInformation {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
+    border-bottom: 2px dashed rgb(125, 167, 196);
+    padding-bottom: 20px;
+
 }
 
 .bags {
@@ -174,25 +160,20 @@
 }
 
 .text1 {
-    font-family: roboto;
+    font-weight: 700;
     font-size: 20px;
     padding-bottom: 10px;
 }
 
 .text2 {
-    font-family: roboto2;
+    font-weight: 500;
     font-size: 15px;
     padding-bottom: 10px;
 }
 
 .text3 {
-    font-family: roboto2;
+    font-weight: 500;
     font-size: 15px;
-}
-
-.BaggageInformation {
-    border-bottom: 2px dashed rgb(125, 167, 196);
-    padding-bottom: 20px;
 }
 
 
@@ -227,7 +208,7 @@
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-family: roboto2;
+    font-weight: 500;
     font-size: 14px;
     min-width: 150px;
 }
@@ -248,7 +229,7 @@
     color: white;
     padding: 11px 15px;
     border-radius: 4px;
-    font-family: roboto;
+    font-weight: 700;
     display: inline-block;
 }
 
@@ -284,7 +265,7 @@
 }
 
 .invois {
-    font-family: roboto;
+    font-weight: 700;
     font-size: 20px;
     align-self: center;
     color: #0424b3;
@@ -294,12 +275,12 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
-    font-family: roboto1;
+    font-weight: 500;
     font-size: 14px;
 }
 
 .total {
-    font-family: roboto;
+    font-weight: 700;
     font-size: 16px;
     margin-top: 10px;
 }
@@ -309,7 +290,7 @@ hr {
 }
 
 .readEgree {
-    font-family: roboto1;
+    font-weight: 500;
     font-size: 15px;
 }
 
@@ -417,8 +398,8 @@ hr {
     padding: 50px;
     border-radius: 15px;
     position: relative;
-    max-width: 800px;
-    width: 90%;
+    max-width: 600px;
+    height: 700px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -427,6 +408,7 @@ hr {
     top: 15px;
     right: 25px;
     font-size: 35px;
+    font-weight: 700;
     color: #0424b3;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -456,7 +438,7 @@ hr {
 }
 
 .trainImg {
-    height: 60px;
+    height: 40px;
     width: auto;
     opacity: 0.6;
     transition: all 0.3s ease;
@@ -465,23 +447,25 @@ hr {
 
 .wagon-hover-btn {
     position: absolute;
-    bottom: -50%;
+    bottom: -100%;
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
     background-color: rgba(26, 42, 140, 0.9);
     color: white;
     border: none;
-    padding: 10px 40px;
+    padding: 10px 30px;
     border-radius: 10px;
     cursor: pointer;
-    font-family: roboto2;
+    font-weight: 500;
     font-size: 12px;
     white-space: nowrap;
     transition: all 0.4s ease;
     pointer-events: none;
     white-space: nowrap;
     z-index: 5;
+    display: flex;
+    gap: 5px;
 }
 
 
@@ -504,60 +488,52 @@ hr {
 }
 
 .wagon-prompt {
-    font-family: 'roboto1', sans-serif;
     font-size: 18px;
     color: #333;
-    margin: 15px 0;
-    font-weight: bold;
+    margin: 0;
+    font-weight: 700;
 }
-
 
 #seatsGrid {
     display: grid;
-    grid-template-columns: 50px 50px  50px 50px;
-    gap: 15px;
-    margin-top: 20px;
-    padding: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-    justify-items: center;
+    grid-template-columns: 1fr 1fr 40px 1fr 1fr;
+    gap: 10px;
+    justify-content: center;
     background: #f9f9f9;
     border-radius: 10px;
-
+    padding: 20px;
+    max-width: fit-content;
+    margin: 20px auto;
 }
 
-#seatsGrid div:nth-child(4n+2) {
-    margin-right: 40px;
+.seat:nth-child(4n+3) {
+    grid-column: 4;
 }
-#seatsGrid div:nth-child(4n+1) {
-    margin-right: 30px;
-}
-#seatsGrid div{
-width: 40px;
-height: 40px;
+
+.seat:nth-child(4n+4) {
+    grid-column: 5;
 }
 
 .seat {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 6px;
     font-size: 13px;
-    font-family: roboto2;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
     border: 2px solid transparent;
 }
-
-
 
 .seat.occupied {
     background-color: #f3f4f6;
     color: #9ca3af;
     cursor: not-allowed;
     border: 1px solid #e5e7eb;
+    pointer-events: none;
 }
 
 .seat.available {
@@ -583,7 +559,7 @@ height: 40px;
 
 .Warn {
     color: red;
-    font-family: roboto2;
+    font-weight: 500;
     font-size: 20px;
 }
 
@@ -603,35 +579,14 @@ height: 40px;
     backdrop-filter: blur(5px);
 }
 
-.authCard {
-    background: white;
-    width: 95%;
-    max-width: 550px;
-    padding: 35px;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    position: relative;
-    animation: modalPop 0.3s ease-out;
-}
 
-@keyframes modalPop {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
 
 .authHeader h3 {
     color: #1a2a8c;
     font-size: 24px;
     margin-bottom: 8px;
     text-align: center;
-    font-family: 'roboto1', sans-serif;
+    font-weight: 500;
 }
 
 .authHeader p {
@@ -639,13 +594,6 @@ height: 40px;
     font-size: 14px;
     text-align: center;
     margin-bottom: 25px;
-}
-
-.inputGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 18px;
 }
 
 .inputGroup label {
@@ -684,7 +632,7 @@ height: 40px;
 .authFooter a {
     color: #1a2a8c;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .authFooter a:hover {
@@ -704,36 +652,19 @@ height: 40px;
     margin-bottom: 20px;
 }
 
-
-.logout-link {
-    color: #ff4757;
-    font-size: 14px;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.logout-link:hover {
-    background: #ffe0e3;
-    text-decoration: underline;
-}
-
-
 .hello-text {
-    font-family: 'roboto1', sans-serif;
+    font-weight: 500;
     color: #2d46b9;
     margin: 0;
 }
 
 .forms-container .inputGroup {
-    flex-direction: row; 
+    flex-direction: row;
     align-items: center;
 }
 
-#regGender{
-   padding: 10px;
+#regGender {
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 14px;
@@ -741,13 +672,60 @@ height: 40px;
     color: #444;
 }
 
+
+
 @media (max-width:1140px) {
 
     .footerRailway {
         margin: 20px;
+    }
+
+    .registration-wrapper {
+        flex-direction: column;
+    }
+
+    .forms-container {
+        order: 2;
+    }
+
+    .invoiceSidebar {
+        order: 1;
+    }
+
+    .invoiceCard {
+        max-width: 1200px;
+    }
+
+}
+
+@media (max-width:980px) {
+    .BaggageInformation {
+        justify-content: center;
+    }
+}
+
+@media (max-width:680px) {
+    .inputMP {
+        width: 100%;
+        flex: none;
+    }
+
+    .inputGroup {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 18px;
     }
 }
 
 @media (max-width:400px) {
     .footerText {
         font-size: 12px;
+    }
+
+    .forms-container {
+        margin: 0;
+    }
+
+}

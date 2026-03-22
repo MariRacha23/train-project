@@ -6,9 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardHolderInput = document.getElementById("cardholder-name");
   const displayAmount = document.getElementById("display-amount");
 
-  const savedAmount = localStorage.getItem("amountToPay");
+  const savedAmount = sessionStorage.getItem("amountToPay");
+
   if (savedAmount && displayAmount) {
-    displayAmount.innerText = savedAmount.replace("₾", "");
+    displayAmount.innerText = savedAmount.replace("₾", "").trim();
   }
   cardNumberInput.addEventListener("input", (e) => {
     let value = e.target.value.replace(/\s+/g, "").replace(/[^0-9]/g, "");
@@ -47,12 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         input.style.borderColor = "#ddd";
       }
-
-      const rawCard = cardNumberInput.value.replace(/\s/g, "");
-const maskedCard = rawCard.substring(0, 4) + "***********" + rawCard.substring(12);
-
-localStorage.setItem("cardHolder", cardHolderInput.value);
-localStorage.setItem("cardMask", maskedCard);
     });
 
     const rawCardNumber = cardNumberInput.value.replace(/\s/g, "");
@@ -67,6 +62,12 @@ localStorage.setItem("cardMask", maskedCard);
     }
 
     if (isValid) {
+      const rawCard = cardNumberInput.value.replace(/\s/g, "");
+      const maskedCard =
+        rawCard.substring(0, 4) + "***********" + rawCard.substring(12);
+
+      sessionStorage.setItem("cardHolder", cardHolderInput.value);
+      sessionStorage.setItem("cardMask", maskedCard);
       alert("გადახდა წარმატებით დასრულდა!");
       window.location.href = "ticket.html";
     } else {
