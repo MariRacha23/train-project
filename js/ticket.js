@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   let rawTicketId = sessionStorage.getItem("lastTicketId");
 
   if (!rawTicketId) {
-    console.error("ბილეთის ID ვერ მოიძებნა LocalStorage-ში");
     return;
   }
 
@@ -31,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const data = await response.json();
-    console.log("სერვერის სრული პასუხი:", data);
+    const fullBookingDate = sessionStorage.getItem("fullBookingDate");
     const setIfExists = (id, value) => {
       const el = document.getElementById(id);
       if (el) el.innerText = value || "-";
@@ -40,7 +39,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     setIfExists("ticket-id", data.id);
     setIfExists("dep-info", `${data.train.from} ${data.train.departure}`);
     setIfExists("arr-info", `${data.train.to} ${data.train.arrive}`);
-    setIfExists("travel-date", data.date);
+
+    setIfExists("travel-date", fullBookingDate || data.date);
     setIfExists("ticket-email", data.email);
 
     const phoneElem = document.getElementById("ticket-phone");
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
   } catch (err) {
-    console.error("ბილეთის ჩატვირთვის შეცდომა:", err);
+    alert("ბოდიში, მონაცემების წამოღება ვერ მოხერხდა. სცადეთ მოგვიანებით.");
   }
 });
 

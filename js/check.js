@@ -2,60 +2,63 @@ let currentTicketId = "";
 
 async function checkTicket() {
   const input = document.getElementById("ticket-id-input");
-    const id = input.value.trim();
-    
-    if (!id) return alert("გთხოვთ შეიყვანოთ ბილეთის ნომერი");
+  const id = input.value.trim();
+
+  if (!id) return alert("გთხოვთ შეიყვანოთ ბილეთის ნომერი");
 
   try {
     const res = await fetch(
       `https://railway.stepprojects.ge/api/tickets/checkstatus/${id}`,
     );
     if (!res.ok) {
-            throw new Error("ბილეთი ამ ნომრით ვერ მოიძებნა");
-        }
+      throw new Error("ბილეთი ამ ნომრით ვერ მოიძებნა");
+    }
     const data = await res.json();
     currentTicketId = data.id;
 
-   const container = document.getElementById("ticket-result-container");
-        container.style.display = "block";
-        renderTicketDetails(data);
-
+    const container = document.getElementById("ticket-result-container");
+    container.style.display = "block";
+    renderTicketDetails(data);
   } catch (err) {
-        alert(err.message);
-        document.getElementById("ticket-result-container").style.display = "none";
-    }
+    alert(err.message);
+    document.getElementById("ticket-result-container").style.display = "none";
+  }
 }
 
 async function cancelTicket(id) {
   if (!confirm("დარწმუნებული ხართ, რომ გსურთ ბილეთის გაუქმება?")) return;
 
   try {
-    const res = await fetch(`https://railway.stepprojects.ge/api/tickets/cancel/${currentTicketId}`, {
-            method: "DELETE"
-        });
+    const res = await fetch(
+      `https://railway.stepprojects.ge/api/tickets/cancel/${currentTicketId}`,
+      {
+        method: "DELETE",
+      },
+    );
 
-   if (res.ok) {
-    const container = document.getElementById("ticket-result-container");
-    container.innerHTML = `
+    if (res.ok) {
+      const container = document.getElementById("ticket-result-container");
+      container.innerHTML = `
         <div class="success-cancel-message">
             <div class="check-icon">✓</div>
             <h1 class="success-title">ბილეთი წარმატებით გაუქმდა</h1>
             <p class="success-text">თანხა დაგიბრუნდებათ ანგარიშზე 2-3 სამუშაო დღეში.</p>
         </div>
     `;
-        } else {
-            alert("ბილეთის გაუქმება ვერ მოხერხდა. შესაძლოა მატარებლის გასვლამდე ცოტა დროა დარჩენილი.");
-        }
-    } catch (err) {
-        alert("სერვერის შეცდომა!");
+    } else {
+      alert(
+        "ბილეთის გაუქმება ვერ მოხერხდა. შესაძლოა მატარებლის გასვლამდე ცოტა დროა დარჩენილი.",
+      );
     }
+  } catch (err) {
+    alert("სერვერის შეცდომა!");
+  }
 }
 
-
 function renderTicketDetails(data) {
-    const container = document.getElementById("invoice-to-print");
-    
-    container.innerHTML = `
+  const container = document.getElementById("invoice-to-print");
+
+  container.innerHTML = `
     <div class="invoice-box">
         <div class="header">
             <h2>Step Railway</h2>
@@ -76,8 +79,8 @@ function renderTicketDetails(data) {
         <div class="contact-section">
             <h3>საკონტაქტო ინფორმაცია:</h3>
             <div class="contact-details">
-                <div class="contact-box"><strong>იმეილი:</strong> <span>${data.email || '---'}</span></div>
-                <div class="contact-box"><strong>ტელეფონი:</strong> <span>${data.phone || '---'}</span></div>
+                <div class="contact-box"><strong>იმეილი:</strong> <span>${data.email || "---"}</span></div>
+                <div class="contact-box"><strong>ტელეფონი:</strong> <span>${data.phone || "---"}</span></div>
             </div>
         </div>
 
@@ -92,14 +95,22 @@ function renderTicketDetails(data) {
             </div>
 
             <div id="passenger-rows">
-                ${(data.persons && Array.isArray(data.persons)) ? data.persons.map(p => `
+                ${
+                  data.persons && Array.isArray(data.persons)
+                    ? data.persons
+                        .map(
+                          (p) => `
                     <div class="passenger-row">
                         <span data-label="სახელი">${p.name || "-"}</span>
                         <span data-label="გვარი">${p.surname || "-"}</span>
                         <span data-label="პირადი ნომერი">${p.idNumber || "-"}</span>
                         <span data-label="ადგილი">${p.seat?.number || p.seatId || "---"}</span>
                     </div>
-                `).join('') : '<div class="no-data">მგზავრების მონაცემები არ მოიძებნა</div>'}
+                `,
+                        )
+                        .join("")
+                    : '<div class="no-data">მგზავრების მონაცემები არ მოიძებნა</div>'
+                }
             </div>
         </div>
     </div>

@@ -37,6 +37,7 @@
 .enterYourDet {
     font-weight: 700;
     font-size: 20px;
+    line-height: 1.3;
 }
 
 .selectedTreinCard {
@@ -222,8 +223,6 @@
     cursor: pointer;
 }
 
-
-
 .seat-badge {
     background: #3f51b5;
     color: white;
@@ -232,7 +231,6 @@
     font-weight: 700;
     display: inline-block;
 }
-
 
 .footerSR {
     background: #edeaea;
@@ -292,6 +290,7 @@ hr {
 .readEgree {
     font-weight: 500;
     font-size: 15px;
+    line-height: 1.5;
 }
 
 .submitBtn {
@@ -391,7 +390,6 @@ hr {
     align-items: center;
 
 }
-
 
 .seatModalContent {
     background-color: white;
@@ -719,13 +717,42 @@ hr {
     }
 }
 
+
+@media (max-width:600px) {
+    .trainImg {
+        max-width: 100px;
+    }
+
+    .wagon-hover-btn {
+        max-width: 90px;
+        padding: 5px;
+    }
+
+    .seatModalContent {
+        padding: 20px;
+    }
+
+}
+
 @media (max-width:400px) {
     .footerText {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .forms-container {
         margin: 0;
     }
 
+}
+
+@media (max-width:370px) {
+    #seatsGrid {
+        max-width: 280px;
+        margin: 15px 0;
+    }
+
+    .seatModalContent {
+        margin: 10px;
+        padding: 20px 0;
+    }
 }

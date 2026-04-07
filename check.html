@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,55 +9,82 @@
     <link rel="stylesheet" href="./css/heder.css">
     <link rel="stylesheet" href="./css/check.css">
 </head>
+
 <body>
     <header></header>
 
     <main>
-    <section class="page-banner">
-        <div class="container">
-            <h1>ბილეთის შემოწმება და გაუქმება</h1>
-        </div>
-    </section>
-
-    <div class="search-container">
-        <div class="search-box">
-            <input type="text" id="ticket-id-input" placeholder="შეიყვანეთ ბილეთის ID (მაგ: e3336ad6...)">
-            <button onclick="checkTicket()">ძებნა</button>
-        </div>
-    </div>
-
-   <div id="ticket-result-container" style="display: none;">
-    <div id="invoice-to-print" class="invoice-box">
-        <div class="passengers-section">
-            <p class="passengersList">მგზავრები:</p>
-            
-            <div class="passengers-header">
-                <div>სახელი</div>
-                <div>გვარი</div>
-                <div>პირადი ნომერი</div>
-                <div>ადგილი</div>
+        <section class="page-banner">
+            <div class="container">
+                <h1>ბილეთის შემოწმება და გაუქმება</h1>
             </div>
+        </section>
 
-            <div id="passenger-rows"></div>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="ticket-id-input" placeholder="შეიყვანეთ ბილეთის ID (მაგ: e3336ad6...)">
+                <button onclick="checkTicket()">ძებნა</button>
+            </div>
         </div>
-    </div>
-</div>
-        
+
+        <div id="ticket-result-container" style="display: none;">
+            <div id="invoice-to-print" class="invoice-box">
+                <div class="passengers-section">
+                    <p class="passengersList">მგზავრები:</p>
+
+                    <div class="passengers-header">
+                        <div>სახელი</div>
+                        <div>გვარი</div>
+                        <div>პირადი ნომერი</div>
+                        <div>ადგილი</div>
+                    </div>
+
+                    <div id="passenger-rows"></div>
+                </div>
+            </div>
+        </div>
+
         <div class="delete-action-zone">
             <button onclick="cancelTicket()" class="cancel-btn">ბილეთის გაუქმება</button>
         </div>
-    </div>
-</main>
+        </div>
+
+        <div id="chat-widget-container">
+            <div id="chat-window" class="chat-window">
+                <div class="chat-header">
+                    <span>🚆 რკინიგზის ასისტენტი</span>
+                    <button class="close-chat" onclick="toggleChat()">✕</button>
+                </div>
+                <div id="chat-messages" class="chat-messages">
+                    <div class="ai-msg"><b>AI:</b> გამარჯობა! რით შემიძლია დაგეხმაროთ?</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="userInput" placeholder="ჩაწერეთ კითხვა..."
+                        onkeypress="handleKeyPress(event)">
+
+                    <button type="button" id="sendBtn" onclick="sendMessage(event)">გაგზავნა</button>
+                </div>
+            </div>
+
+            <button id="chat-toggle-btn" class="chat-toggle-btn" onclick="toggleChat()">
+                💬
+            </button>
+        </div>
 
 
-  <footer class="footerSR">
+    </main>
+
+
+    <footer class="footerSR">
         <div class="footerRailway">
             <p class="footerText">©2023 <span class="stepRail">Step Railway. </span> ყველა უფლება დაცულია.</p>
         </div>
     </footer>
 
-<script src="./js/header.js"></script>
-<script src="./js/check.js"></script>
-    
+    <script src="./js/header.js"></script>
+    <script src="./js/check.js"></script>
+    <script src="./js/ai-logic.js"></script>
+
 </body>
+
 </html>

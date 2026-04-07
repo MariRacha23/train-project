@@ -60,7 +60,8 @@ header.scrolled .geoReil {
 }
 
 header.scrolled .welcome-text a,
-header.scrolled #userWelcome {
+header.scrolled #userWelcome,
+header.scrolled .geotext {
     color: #1a2a8c;
 }
 
@@ -138,6 +139,12 @@ header.scrolled .nav-btn:hover {
     align-items: center;
 }
 
+.authHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 #authModalOverlay {
     position: fixed;
     inset: 0;
@@ -153,6 +160,8 @@ header.scrolled .nav-btn:hover {
     background: white;
     width: 95%;
     max-width: 600px;
+    max-height: 700px;
+    overflow-y: auto;
     padding: 30px;
     border-radius: 20px;
     position: relative;
@@ -173,6 +182,7 @@ header.scrolled .nav-btn:hover {
     flex-direction: column;
     gap: 8px;
     margin-bottom: 20px;
+    margin-top: 10px
 }
 
 .inputGroup label {
@@ -201,6 +211,8 @@ header.scrolled .nav-btn:hover {
 
 .submitSoan {
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
@@ -240,7 +252,8 @@ header.scrolled .nav-btn:hover {
 .close-modal:hover {
     color: #e74c3c;
 }
-.regText{
+
+.regText {
     font-size: 25px;
     line-height: 1.5;
 }
@@ -255,11 +268,22 @@ header.scrolled .nav-btn:hover {
     background: white;
     width: 100%;
     max-width: 450px;
+    max-height: 700px;
     border-radius: 16px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    overflow-y: auto;
     animation: slideIn 0.3s ease-out;
 }
+
+.profile-card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.profile-card::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
 .profile-info {
     padding: 10px 0;
 }
@@ -273,16 +297,18 @@ header.scrolled .nav-btn:hover {
     font-size: 15px;
     color: #444;
 }
+
 .profile-info p strong {
     color: #2c3e50;
     font-weight: 600;
 }
 
 .separator {
-  margin: 25px 0;
+    margin: 25px 0;
     border: none;
     border-top: 2px dashed #eee;
 }
+
 .logout-link {
     display: block;
     width: 100%;
@@ -296,26 +322,35 @@ header.scrolled .nav-btn:hover {
     transition: 0.2s;
     margin-top: 10px;
 }
+
 .logout-link:hover {
     background-color: #fdf2f2;
 }
 
 @keyframes slideIn {
-    from { transform: translateY(-30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
+
 .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    backdrop-filter: blur(8px); 
-    display: none; 
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 12;
     padding: 20px;
 }
 
@@ -343,9 +378,120 @@ header.scrolled .nav-btn:hover {
     padding: 12px;
     cursor: pointer;
 }
+
 .geotext {
-color: white;
-font-size: 30px;
+    color: white;
+    font-size: 30px;
+}
+
+.chat-toggle-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #2c3e50;
+    color: white;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+    float: right;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+    position: relative;
+    pointer-events: auto;
+}
+
+.chat-window {
+    width: 330px;
+    height: 450px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+.chat-header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+}
+
+.chat-input-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.user-msg {
+    background: #f0f0f0;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 8px;
+    align-self: flex-end;
+}
+
+.ai-msg {
+    background: #e3f2fd;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 8px;
+    border-left: 4px solid #2196f3;
+}
+
+#chat-widget-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
+
+.chat-toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+.last-ticket-box {
+    margin-top: 15px;
+    padding: 12px;
+    background: #eef2f7;
+    border-radius: 8px;
+    border: 1px solid #d1d9e6;
+}
+
+.last-ticket-title {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.last-ticket-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 @media (max-width: 815px) {
@@ -367,10 +513,48 @@ font-size: 30px;
         flex-direction: column;
         gap: 10px;
     }
+
+    .welcome-text a {
+        font-size: 20px;
+    }
 }
 
-@media (max-width: 815px) {
-   .welcome-text a {
-    font-size: 20px;
-   }
+@media (max-width: 520px) {
+    .reg {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .chat-window {
+        width: 250px;
+    }
+
+    .chat-header {
+        font-size: 15px;
+    }
+
+    .authCard {
+        padding: 30px 15px;
+    }
+
+    .autHedText {
+        font-size: 14px;
+        line-height: 1;
+        padding: 10px 0;
+    }
+
+    .profile-info p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        padding: 8px 0;
+    }
+
+    .profile-info p strong {
+        margin-bottom: 2px;
+        color: #888;
+        font-size: 13px;
+    }
 }

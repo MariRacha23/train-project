@@ -95,7 +95,6 @@
     color: #999;
 }
 
-
 .book-btn {
     background-color: #2d46b9;
     color: white;
@@ -224,5 +223,9 @@
 @media (max-width:350px) {
     .col-name {
         flex-direction: column;
+    }
+
+    .footerText {
+        font-size: 10px;
     }
 }

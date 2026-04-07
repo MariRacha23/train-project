@@ -22,7 +22,7 @@ async function loadHeader() {
                 <div class="authCard" id="loginSection">
                     <div class="authHeader">
                         <h3>ავტორიზაცია</h3>
-                        <p>გთხოვთ გაიაროთ ავტორიზაცია ბილეთის დასაჯავშნად</p>
+                        <p class="autHedText">გთხოვთ გაიაროთ ავტორიზაცია ბილეთის დასაჯავშნად</p>
                         <button class="close-modal" onclick="closeAuthModal()">✕</button>
                     </div>
                     <form class="authBody" id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
@@ -97,7 +97,7 @@ async function loadHeader() {
         <label>ძველი პაროლი</label>
         <input type="password" id="oldPass" required placeholder="******" class="profile-input">
     </div>
-    <div class="inputGroup" style="margin-top: 10px;">
+    <div class="inputGroup" >
         <label>ახალი პაროლი</label>
         <input type="password" id="newPass" required placeholder="******" class="profile-input">
     </div>
@@ -164,6 +164,14 @@ async function handleLogin() {
     if (res.ok && data.access_token) {
       sessionStorage.setItem("accessToken", data.access_token);
 
+      let chatHistory = JSON.parse(sessionStorage.getItem("chatHistory")) || [];
+      chatHistory.push({
+        role: "assistant",
+        content:
+          "ავტორიზაცია წარმატებულია! ახლა შემიძლია დაგეხმაროთ რეისის შერჩევაში.",
+      });
+      sessionStorage.setItem("chatHistory", JSON.stringify(chatHistory));
+
       await getUserData();
       closeAuthModal();
       const pendingTrain = sessionStorage.getItem("selectedTrainId");
@@ -178,8 +186,7 @@ async function handleLogin() {
       alert("შეცდომა: " + (data.message || "არასწორი მონაცემები"));
     }
   } catch (e) {
-    console.error("Login Error:", e);
-    alert("სერვერთან კავშირი ვერ დამყარდა.");
+    alert("ბოდიში, მონაცემების წამოღება ვერ მოხერხდა. სცადეთ მოგვიანებით.");
   }
 }
 
@@ -212,16 +219,14 @@ async function signUp() {
       alert("შეცდომა: " + err.message);
     }
   } catch (e) {
-    console.error(e);
+    alert("ბოდიში, მონაცემების წამოღება ვერ მოხერხდა. სცადეთ მოგვიანებით.");
   }
 }
 
 async function getUserData() {
   const token = sessionStorage.getItem("accessToken");
-  if (!token || token === "undefined" || token === "null") {
-    sessionStorage.removeItem("accessToken");
-    return;
-  }
+
+  if (!token || token === "null" || token === "undefined") return;
 
   try {
     const res = await fetch("https://api.everrest.educata.dev/auth", {
@@ -230,119 +235,128 @@ async function getUserData() {
 
     if (res.ok) {
       const user = await res.json();
-      sessionStorage.setItem("userEmail", user.email);
-      sessionStorage.setItem("userFirstName", user.firstName);
-      sessionStorage.setItem("userLastName", user.lastName);
 
+      sessionStorage.setItem("userEmail", user.email);
       sessionStorage.setItem("userData", JSON.stringify(user));
 
-      document.getElementById("authBtn").style.display = "none";
+      const authBtn = document.getElementById("authBtn");
+      const logoutBtn = document.getElementById("logoutBtn");
       const welcome = document.getElementById("userWelcome");
 
-      welcome.innerHTML = `<a href="javascript:void(0)" onclick="openProfileModal()">გამარჯობა, ${user.firstName}</a>`;
-
-      welcome.style.display = "inline";
-      document.getElementById("logoutBtn").style.display = "inline";
-
-      if (typeof fillRegistrationInputs === "function") {
-        fillRegistrationInputs(user);
-      } else {
-        sessionStorage.removeItem("accessToken");
-        console.warn("სესიას ვადა გაუვიდა.");
+      if (authBtn) authBtn.style.display = "none";
+      if (logoutBtn) logoutBtn.style.display = "inline";
+      if (welcome) {
+        welcome.innerHTML = `<a href="javascript:void(0)" onclick="openProfileModal()">გამარჯობა, ${user.firstName}</a>`;
+        welcome.style.display = "inline";
       }
+
+      fillRegistrationInputs(user);
+    } else if (res.status === 401 || res.status === 400) {
+      sessionStorage.removeItem("accessToken");
     }
   } catch (e) {
-    console.error(e);
+    alert("ბოდიში, მონაცემების წამოღება ვერ მოხერხდა. სცადეთ მოგვიანებით.");
   }
 }
 
 function fillRegistrationInputs(user) {
-  const emailInput = document.getElementById("email");
-  const phoneInput = document.getElementById("phone");
+  const elements = {
+    email: document.getElementById("email"),
+    phone: document.getElementById("phone"),
+    fname: document.getElementById("fname-1"),
+    lname: document.getElementById("lname-1"),
+  };
 
-  if (emailInput) {
-    emailInput.value = user.email || "";
-  }
-  if (phoneInput) {
-    phoneInput.value = user.phone || "";
-  }
+  if (elements.email) elements.email.value = user.email || "";
+  if (elements.phone) elements.phone.value = user.phone || "";
+
   setTimeout(() => {
-    const firstNameInput = document.getElementById("fname-1");
-    const lastNameInput = document.getElementById("lname-1");
-
-    if (firstNameInput) firstNameInput.value = user.firstName || "";
-    if (lastNameInput) lastNameInput.value = user.lastName || "";
-  }, 100);
+    if (elements.fname) elements.fname.value = user.firstName || "";
+    if (elements.lname) elements.lname.value = user.lastName || "";
+  }, 200);
 }
 
 document.addEventListener("DOMContentLoaded", loadHeader);
 
+window.openProfileModal = function () {
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const detailsContainer = document.getElementById("profileDetails");
+  const lastTicketId = sessionStorage.getItem("lastTicketId");
 
-window.openProfileModal = function() {
-    const userData = JSON.parse(sessionStorage.getItem("userData"));
-    const detailsContainer = document.getElementById("profileDetails");
-    
-    if (userData && detailsContainer) {
-        detailsContainer.innerHTML = `
+  if (userData && detailsContainer) {
+    let ticketHtml = "";
+    if (lastTicketId) {
+      const cleanId = lastTicketId.replace(/['"]+/g, "");
+      ticketHtml = `
+        <div class="last-ticket-box" >
+          <p class="last-ticket-title" >🎫 ჩემი ჯავშანი </p>
+          <a href="ticket.html" class="last-ticket-link">🔎 ბილეთის ნახვა </a>
+        </div>
+      `;
+    }
+    detailsContainer.innerHTML = `
             <p><strong>სახელი:</strong> ${userData.firstName} ${userData.lastName}</p>
             <p><strong>ელ-ფოსტა:</strong> ${userData.email}</p>
-            <p><strong>ტელეფონი:</strong> ${userData.phone || '-'}</p>
-            <p><strong>მისამართი:</strong> ${userData.address || '-'}</p>
-            <p><strong>ასაკი:</strong> ${userData.age || '-'}</p>
-            <p><strong>სქესი:</strong> ${userData.gender === 'MALE' ? 'მამრობითი' : (userData.gender === 'FEMALE' ? 'მდედრობითი' : '-')}</p>
+            <p><strong>ტელეფონი:</strong> ${userData.phone || "-"}</p>
+            <p><strong>მისამართი:</strong> ${userData.address || "-"}</p>
+            <p><strong>ასაკი:</strong> ${userData.age || "-"}</p>
+            <p><strong>სქესი:</strong> ${userData.gender === "MALE" ? "მამრობითი" : userData.gender === "FEMALE" ? "მდედრობითი" : "-"}</p>
+            ${ticketHtml}
         `;
-    }
-    document.getElementById("profileModalOverlay").style.display = "flex";
+  }
+  document.getElementById("profileModalOverlay").style.display = "flex";
 };
 
-window.closeProfileModal = function() {
-    document.getElementById("profileModalOverlay").style.display = "none";
+window.closeProfileModal = function () {
+  document.getElementById("profileModalOverlay").style.display = "none";
 };
 
 async function changePassword() {
- const oldPassInput = document.getElementById("oldPass");
-    const newPassInput = document.getElementById("newPass");
-    const token = sessionStorage.getItem("accessToken");
+  const oldPassInput = document.getElementById("oldPass");
+  const newPassInput = document.getElementById("newPass");
+  const token = sessionStorage.getItem("accessToken");
 
-    const oldPassword = oldPassInput ? oldPassInput.value : null;
-    const newPassword = newPassInput ? newPassInput.value : null;
+  const oldPassword = oldPassInput ? oldPassInput.value : null;
+  const newPassword = newPassInput ? newPassInput.value : null;
 
-if (!oldPassword || !newPassword) {
-        alert("გთხოვთ შეავსოთ ორივე ველი");
-        return;
+  if (!oldPassword || !newPassword) {
+    alert("გთხოვთ შეავსოთ ორივე ველი");
+    return;
+  }
+  try {
+    const res = await fetch(
+      "https://api.everrest.educata.dev/auth/change_password",
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          oldPassword: oldPassword,
+          newPassword: newPassword,
+        }),
+      },
+    );
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("პაროლი წარმატებით შეიცვალა!");
+      if (data.access_token) {
+        sessionStorage.setItem("accessToken", data.access_token);
+      }
+      document.getElementById("changePassForm").reset();
+      closeProfileModal();
+    } else {
+      alert("შეცდომა: " + (data.message || "ვერ მოხერხდა პაროლის შეცვლა"));
     }
-    try {
-        const res = await fetch("https://api.everrest.educata.dev/auth/change_password", {
-            method: "PATCH",
-            headers: { 
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify({
-               oldPassword: oldPassword, 
-                newPassword: newPassword 
-              }),
-        });
-
-      const data = await res.json();
-
-        if (res.ok) {
-            alert("პაროლი წარმატებით შეიცვალა!");
-            if (data.access_token) {
-                sessionStorage.setItem("accessToken", data.access_token);
-            }
-            document.getElementById("changePassForm").reset();
-            closeProfileModal();
-        } else {
-            alert("შეცდომა: " + (data.message || "ვერ მოხერხდა პაროლის შეცვლა"));
-        }
-    } catch (e) {
-        console.error("Change Password Error:", e);
-        alert("სერვერთან კავშირი ვერ დამყარდა.");
-    }
+  } catch (e) {
+    alert("ბოდიში, მონაცემების წამოღება ვერ მოხერხდა. სცადეთ მოგვიანებით.");
+  }
 }
 
-window.handleLogout = function() {
-    sessionStorage.clear();
-    window.location.href = "index.html";
+window.handleLogout = function () {
+  sessionStorage.clear();
+  window.location.href = "index.html";
 };

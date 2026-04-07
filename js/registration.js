@@ -66,13 +66,30 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
   } catch (error) {
-    console.error("შეცდომა:", error);
+    alert("ბოდიში, მონაცემების წამოღება ვერ მოხერხდა. სცადეთ მოგვიანებით.");
   }
 
   const token = sessionStorage.getItem("accessToken");
   if (!token) {
     const authModal = document.getElementById("authModalOverlay");
     if (authModal) authModal.style.display = "flex";
+  }
+
+  const pendingData = sessionStorage.getItem("pendingPassengerData");
+  if (pendingData) {
+    const data = JSON.parse(pendingData);
+    if (document.getElementById("fname-1"))
+      document.getElementById("fname-1").value = data.firstName;
+    if (document.getElementById("lname-1"))
+      document.getElementById("lname-1").value = data.lastName;
+    if (document.getElementById("pn-1"))
+      document.getElementById("pn-1").value = data.pn;
+    if (document.getElementById("email"))
+      document.getElementById("email").value = data.email;
+    if (document.getElementById("phone"))
+      document.getElementById("phone").value = data.phone;
+
+    sessionStorage.removeItem("pendingPassengerData");
   }
 });
 
@@ -99,8 +116,10 @@ window.loadTrainWagons = async function () {
   try {
     const response = await fetch(`https://railway.stepprojects.ge/api/vagons`);
     const allVagons = await response.json();
-    
-    let relevantVagons = allVagons.filter(v => String(v.trainId) === String(trainId));
+
+    let relevantVagons = allVagons.filter(
+      (v) => String(v.trainId) === String(trainId),
+    );
 
     relevantVagons.sort((a, b) => {
       const priceA = a.price || (a.seats && a.seats[0] ? a.seats[0].price : 0);
@@ -115,7 +134,9 @@ window.loadTrainWagons = async function () {
       if (index === 0) wagonImg = "firstWagon.png";
       else if (index === relevantVagons.length - 1) wagonImg = "lastWagon.png";
 
-      const displayPrice = wagon.price || (wagon.seats && wagon.seats[0] ? wagon.seats[0].price : "0");
+      const displayPrice =
+        wagon.price ||
+        (wagon.seats && wagon.seats[0] ? wagon.seats[0].price : "0");
 
       const wagonWrapper = document.createElement("div");
       wagonWrapper.className = "wagon-wrapper";
@@ -128,11 +149,12 @@ window.loadTrainWagons = async function () {
       `;
       wagonContainer.appendChild(wagonWrapper);
     });
+
+    window.availableVagons = relevantVagons;
   } catch (e) {
-    console.error("Wagon Loading Error:", e);
+    alert("ბოდიში, მონაცემების წამოღება ვერ მოხერხდა. სცადეთ მოგვიანებით.");
   }
 };
-
 
 let currentPassengerIndex = null;
 window.openSeatModal = (index) => {
@@ -218,7 +240,6 @@ window.generateSeats = async function (wagonId) {
       seatsGrid.appendChild(seatDiv);
     });
   } catch (error) {
-    console.error("შეცდომა სკამების ჩატვირთვისას:", error);
     seatsGrid.innerHTML = "მონაცემების ჩატვირთვა ვერ მოხერხდა.";
   }
 };
@@ -287,7 +308,7 @@ document.getElementById("finishBooking").addEventListener("click", () => {
 
   const email = document.getElementById("email")?.value.trim();
   const phone = document.getElementById("phone")?.value.trim();
-  const agree = document.getElementById("egreeTetms")?.checked;
+  const agree = document.getElementById("agreeTerms")?.checked;
 
   if (allValid && (!email || !phone || !agree)) {
     allValid = false;
@@ -312,8 +333,10 @@ async function handleFinalBooking() {
 
   for (let i = 1; i <= passengerCount; i++) {
     const seatBadge = document.getElementById(`seat-num-${i}`);
-    const sId = seatBadge ? seatBadge.getAttribute("data-selected-seat-id") : null;
-  const vId = seatBadge ? seatBadge.getAttribute("data-vagon-id") : null;
+    const sId = seatBadge
+      ? seatBadge.getAttribute("data-selected-seat-id")
+      : null;
+    const vId = seatBadge ? seatBadge.getAttribute("data-vagon-id") : null;
 
     if (!sId) {
       alert(`გთხოვთ, აირჩიოთ ადგილი მგზავრისთვის #${i}`);
@@ -331,8 +354,14 @@ async function handleFinalBooking() {
     });
   }
 
-  const dayText = sessionStorage.getItem("selectedDay");
-  const formattedDate = getDateFromDayName(dayText);
+  const formattedDate = sessionStorage.getItem("fullBookingDate");
+
+  if (!formattedDate) {
+    alert("შეცდომა: თარიღი ვერ მოიძებნა. გთხოვთ, თავიდან აირჩიოთ რეისი.");
+    window.location.href = "index.html";
+    return;
+  }
+
   const rawPhone = document.getElementById("phone").value.trim();
 
   const bookingData = {
@@ -342,8 +371,6 @@ async function handleFinalBooking() {
     phoneNumber: rawPhone.replace("+995", ""),
     people: people,
   };
-
-  console.log("ვაგზავნით მონაცემებს სესიიდან:", bookingData);
 
   try {
     const res = await fetch(
@@ -374,30 +401,9 @@ async function handleFinalBooking() {
       alert("შეცდომა: " + (errData.message || "მონაცემები არასწორია"));
     }
   } catch (error) {
-    console.error("Fetch error:", error);
     alert("სერვერთან კავშირი ვერ დამყარდა");
   }
 }
-
-function getDateFromDayName(dayName) {
-  const days = {
-    ორშაბათი: 1,
-    სამშაბათი: 2,
-    ოთხშაბათი: 3,
-    ხუთშაბათი: 4,
-    პარასკევი: 5,
-    შაბათი: 6,
-    კვირა: 0,
-  };
-  const today = new Date();
-  const resultDate = new Date(today);
-  resultDate.setDate(
-    today.getDate() + ((days[dayName] + (7 - today.getDay())) % 7),
-  );
-  return resultDate.toISOString().split("T")[0];
-}
-
-
 
 window.addEventListener("click", (event) => {
   const modal = document.getElementById("seatModalOverlay");
@@ -405,3 +411,45 @@ window.addEventListener("click", (event) => {
     closeSeatModal();
   }
 });
+
+window.aiFillPassenger = function (index, fname, lname, pn, email, phone) {
+  let currentHistory = JSON.parse(sessionStorage.getItem("chatHistory")) || [];
+
+  const inputs = {
+    [`fname-${index}`]: fname,
+    [`lname-${index}`]: lname,
+    [`pn-${index}`]: pn,
+    email: email,
+    phone: phone,
+  };
+
+  for (const [id, value] of Object.entries(inputs)) {
+    const el = document.getElementById(id);
+    if (el && value && value !== "undefined") {
+      el.value = value;
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+      el.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  }
+
+  const confirmationMsg = `მონაცემები ავტომატურად შევსებულია მგზავრისთვის: ${fname} ${lname}. გთხოვთ, შეავსოთ მხოლოდ გამოტოვებული ველები (მაგ. პირადი ნომერი).`;
+
+  currentHistory.push({
+    role: "assistant",
+    content: confirmationMsg,
+  });
+
+  sessionStorage.setItem(
+    "chatHistory",
+    JSON.stringify(currentHistory.slice(-10)),
+  );
+
+  const chatMessages = document.getElementById("chat-messages");
+  if (chatMessages) {
+    const div = document.createElement("div");
+    div.className = "ai-msg";
+    div.innerHTML = `<b>AI:</b> ${confirmationMsg}`;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+};

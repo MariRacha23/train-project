@@ -222,18 +222,26 @@
 
 }
 
-@media (max-width:400px) {
-    .footerText {
-        font-size: 12px;
-    }
-
+@media (max-width:450px) {
     .secondMainContainer {
         gap: 50px;
+    }
+
+    .footerText {
+        font-size: 12px;
     }
 }
 
 @media (max-width: 360px) {
     .information {
-        padding: 10px;
+        padding: 15px;
+    }
+
+    .text {
+        font-size: 12px;
+    }
+
+    .footerText {
+        font-size: 10px;
     }
 }

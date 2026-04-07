@@ -30,6 +30,29 @@
         <div id="trainListContainer" class="train-list">
         </div>
 
+
+        <div id="chat-widget-container">
+            <div id="chat-window" class="chat-window">
+                <div class="chat-header">
+                    <span>🚆 რკინიგზის ასისტენტი</span>
+                    <button class="close-chat" onclick="toggleChat()">✕</button>
+                </div>
+                <div id="chat-messages" class="chat-messages">
+                    <div class="ai-msg"><b>AI:</b> გამარჯობა! რით შემიძლია დაგეხმაროთ?</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="userInput" placeholder="ჩაწერეთ კითხვა..."
+                        onkeypress="handleKeyPress(event)">
+
+                    <button type="button" id="sendBtn" onclick="sendMessage(event)">გაგზავნა</button>
+                </div>
+            </div>
+
+            <button id="chat-toggle-btn" class="chat-toggle-btn" onclick="toggleChat()">
+                💬
+            </button>
+        </div>
+
     </main>
 
     <footer class="footerSR">
@@ -40,6 +63,7 @@
 
     <script src="./js/result.js"></script>
     <script src="./js/header.js"></script>
+    <script src="./js/ai-logic.js"></script>
 
 </body>
 

@@ -4,6 +4,7 @@ async function loadStations() {
       "https://railway.stepprojects.ge/api/stations",
     );
     const stations = await response.json();
+
     const fromSelect = document.getElementById("fromStation");
     const toSelect = document.getElementById("toStation");
 
@@ -16,8 +17,24 @@ async function loadStations() {
       fromSelect.innerHTML += optionHTML;
       toSelect.innerHTML += optionHTML;
     });
+    fromSelect.addEventListener("change", function () {
+      const selectedCity = fromSelect.value;
+
+      Array.from(toSelect.options).forEach((option) => {
+        if (option.value === selectedCity) {
+          option.disabled = true;
+          option.style.color = "#ccc";
+        } else {
+          option.disabled = false;
+          option.style.color = "";
+        }
+      });
+      if (toSelect.value === selectedCity) {
+        toSelect.value = "";
+      }
+    });
   } catch (error) {
-    console.error("მონაცემების წამოღება ვერ მოხერხდა:", error);
+    alert("მონაცემების წამოღება ვერ მოხერხდა:");
   }
 }
 loadStations();
@@ -48,13 +65,17 @@ async function getFlights(day) {
       `https://railway.stepprojects.ge/api/trains?day=${day}`,
     );
     const flights = await response.json();
+    window.currentAvailableTrains = flights;
 
-    console.log(flights);
+    sessionStorage.setItem("lastSearchResults", JSON.stringify(flights));
+    return flights;
   } catch (error) {
-    console.error("რეისების წამოღება ვერ მოხერხდა:", error);
+    alert("ბოდიში, რეისების ჩატვირთვა ვერ მოხერხდა. სცადეთ მოგვიანებით.");
   }
 }
 
+const todayName = weekDays[new Date().getDay()];
+getFlights(todayName);
 const searchBtn = document.querySelector(".search-main-btn");
 
 searchBtn.addEventListener("click", () => {
@@ -86,6 +107,7 @@ searchBtn.addEventListener("click", () => {
   const selectedDate = new Date(dateInputVal);
   const dayName = weekDays[selectedDate.getDay()];
 
+  sessionStorage.setItem("fullBookingDate", dateInputVal);
   sessionStorage.setItem("selectedDay", dayName);
   sessionStorage.setItem("passengerCount", passengers);
   sessionStorage.setItem("from", fromStation);
@@ -93,3 +115,38 @@ searchBtn.addEventListener("click", () => {
 
   window.location.href = "result.html";
 });
+
+window.performAiSearch = async function (from, to, date) {
+  const selectedDate = new Date(date);
+  const dayName = weekDays[selectedDate.getDay()];
+
+  sessionStorage.setItem("fullBookingDate", date);
+  sessionStorage.setItem("selectedDay", dayName);
+
+  try {
+    const response = await fetch(
+      `https://railway.stepprojects.ge/api/trains?day=${encodeURIComponent(dayName)}`,
+    );
+    const allTrains = await response.json();
+
+    let filtered = allTrains.filter(
+      (t) =>
+        t.from.trim().toLowerCase() === from.trim().toLowerCase() &&
+        t.to.trim().toLowerCase() === to.trim().toLowerCase(),
+    );
+
+    const uniqueTrains = [];
+    const seenTimes = new Set();
+    for (const t of filtered) {
+      if (!seenTimes.has(t.departure)) {
+        seenTimes.add(t.departure);
+        uniqueTrains.push(t);
+      }
+    }
+
+    return uniqueTrains.slice(0, 3);
+  } catch (e) {
+    alert("ძებნის შეცდომა:", e);
+    return [];
+  }
+};

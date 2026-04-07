@@ -5,16 +5,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   const to = sessionStorage.getItem("to");
   const day = sessionStorage.getItem("selectedDay");
 
-  console.log("ვეძებთ შემდეგ პარამეტრებს:", { from, to, day });
   try {
     const response = await fetch(
       `https://railway.stepprojects.ge/api/trains?day=${day}`,
     );
+    if (!response.ok) {
+      throw new Error("სერვერის შეცდომა");
+    }
     const allTrains = await response.json();
 
     const filteredTrains = allTrains.filter(
       (t) => t.from === from && t.to === to && t.date === day,
     );
+    window.currentAvailableTrains = filteredTrains;
+
+    sessionStorage.setItem("lastSearchResults", JSON.stringify(filteredTrains));
 
     if (filteredTrains.length === 0) {
       container.innerHTML = "<h2> რეისები ვერ მოიძებნა</h2>";
@@ -23,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderTrains(filteredTrains, container);
   } catch (error) {
-    console.error("მონაცემების ჩატვირთვა ვერ მოხერხდა:", error);
+    alert("ბოდიში, მონაცემების წამოღება ვერ მოხერხდა. სცადეთ მოგვიანებით.");
   }
 });
 
@@ -35,7 +40,7 @@ function renderTrains(trains, container) {
         <div class="train-item">
                 <div class="col-name">
                     <span class="number">#${train.number}</span>
-                    <p class="name">${train.name}  Expres </p>
+                    <p class="name">${train.name}  Express </p>
                 </div>
                 <div class="col-departure dashedLine">
                     <p class="time">${train.departure}</p> 
@@ -53,18 +58,20 @@ function renderTrains(trains, container) {
   });
 }
 
+window.executeBooking = function (trainId) {
+  bookNow(trainId);
+};
+
 function bookNow(trainId) {
   sessionStorage.setItem("selectedTrainId", trainId);
   const token = sessionStorage.getItem("accessToken");
 
-  console.log("Token value:", token);
   if (
     !token ||
     token === "undefined" ||
     token === "null" ||
     token.length < 10
   ) {
-    console.warn("ავტორიზაცია საჭიროა!");
     const authModal = document.getElementById("authModalOverlay");
     if (authModal) {
       authModal.style.display = "flex";

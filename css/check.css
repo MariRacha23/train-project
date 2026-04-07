@@ -9,7 +9,7 @@ h1 {
     font-weight: 700;
     font-size: 25px;
     color: black;
-    padding: 100px 0;
+    padding: 110px 0;
 }
 
 .search-container {
@@ -106,8 +106,6 @@ h1 {
     text-align: center;
     margin-top: 20px;
 }
-
-
 
 .footerSR {
     background: #edeaea;
@@ -221,9 +219,6 @@ h1 {
     font-weight: bold;
 }
 
-
-
-
 .success-cancel-message {
     text-align: center;
     padding: 80px 20px;
@@ -246,9 +241,6 @@ h1 {
     margin-bottom: 30px;
     line-height: 1.5;
 }
-
-
-
 
 .check-icon {
     width: 70px;
@@ -306,12 +298,12 @@ h1 {
     }
 
     .footerText {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     h1 {
         font-size: 20px;
-        padding: 100px 10px;
+        padding: 110px 20px;
     }
 
     .passengers-header {

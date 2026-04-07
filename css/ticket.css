@@ -5,7 +5,7 @@
     padding: 40px 0;
     text-align: center;
     margin-bottom: 20px;
-    padding-top: 100px;
+    padding-top: 120px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -508,9 +508,7 @@
     #ticket-id {
         font-size: 15px;
     }
-}
 
-@media (max-width: 570px) {
     .page-banner h1 {
         font-size: 20px;
 
@@ -521,6 +519,11 @@
     }
 
     .page-banner {
-        padding: 100px 20px 0;
+        padding: 120px 20px 0;
+    }
+
+    .footerText {
+        font-size: 10px;
+
     }
 }
