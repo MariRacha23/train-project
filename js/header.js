@@ -295,14 +295,27 @@ window.openProfileModal = function () {
       `;
     }
     detailsContainer.innerHTML = `
-            <p><strong>სახელი:</strong> ${userData.firstName} ${userData.lastName}</p>
-            <p><strong>ელ-ფოსტა:</strong> ${userData.email}</p>
-            <p><strong>ტელეფონი:</strong> ${userData.phone || "-"}</p>
-            <p><strong>მისამართი:</strong> ${userData.address || "-"}</p>
-            <p><strong>ასაკი:</strong> ${userData.age || "-"}</p>
-            <p><strong>სქესი:</strong> ${userData.gender === "MALE" ? "მამრობითი" : userData.gender === "FEMALE" ? "მდედრობითი" : "-"}</p>
-            ${ticketHtml}
-        `;
+            <form id="updateProfileForm" onsubmit="event.preventDefault(); updateUserInfo();">
+        <div class="inputGroup">
+            <label>სახელი</label>
+            <input type="text" id="editFirstName" value="${userData.firstName}" class="profile-input">
+        </div>
+        <div class="inputGroup">
+            <label>გვარი</label>
+            <input type="text" id="editLastName" value="${userData.lastName}" class="profile-input">
+        </div>
+        <div class="inputGroup">
+            <label>ტელეფონი</label>
+            <input type="text" id="editPhone" value="${userData.phone || ""}" class="profile-input">
+        </div>
+        <div class="inputGroup">
+            <label>მისამართი</label>
+            <input type="text" id="editAddress" value="${userData.address || ""}" class="profile-input">
+        </div>
+        <button type="submit" class="submitBtn profile-submit-btn">მონაცემების განახლება</button>
+      </form>
+      ${ticketHtml}
+    `;
   }
   document.getElementById("profileModalOverlay").style.display = "flex";
 };
@@ -360,3 +373,40 @@ window.handleLogout = function () {
   sessionStorage.clear();
   window.location.href = "index.html";
 };
+
+async function updateUserInfo() {
+  const token = sessionStorage.getItem("accessToken");
+
+  const updatedData = {
+    firstName: document.getElementById("editFirstName").value,
+    lastName: document.getElementById("editLastName").value,
+    phone: document.getElementById("editPhone").value,
+    address: document.getElementById("editAddress").value,
+  };
+
+  try {
+    const res = await fetch("https://api.everrest.educata.dev/auth/update", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (res.ok) {
+      const newUser = await res.json();
+      sessionStorage.setItem("userData", JSON.stringify(newUser));
+
+      alert("მონაცემები წარმატებით განახლდა!");
+
+      await getUserData();
+      closeProfileModal();
+    } else {
+      const err = await res.json();
+      alert("შეცდომა: " + (err.message || "ვერ მოხერხდა განახლება"));
+    }
+  } catch (e) {
+    alert("კავშირის შეცდომა. სცადეთ მოგვიანებით.");
+  }
+}
